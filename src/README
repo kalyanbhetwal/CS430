@@ -1,0 +1,25 @@
+Assuming all files are in the same directory, compile using the commands below:
+
+fibonacci.c:
+
+Compile: gcc fibonacci.c -o fibonacci
+
+Usage: fibonacci <n>
+
+Prints the n-th fibonacci number:
+
+Fibonacci Numbers are defined by the recursion F(n) = F(n-1) + F(n-2) with
+
+starting values F(0) = 0 and F(1) = 1.
+
+
+
+leibniz.c:
+
+Compile: gcc leibniz.c -o leibniz
+
+Usage: leibniz <n>
+
+Computes PI accurate to n digits using the Leibniz series.
+
+The Leibniz series for PI is the alternating series 4 - 4/3 + 4/5 - 4/7 + 4/9 - 4/11 + ... + (4*(-1)^(n+1))/(2*n+1) + ...
