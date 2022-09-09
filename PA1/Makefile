@@ -19,3 +19,4 @@ $(BUILD_DIR)/bin/program: $(OBJS)
 
 clean:
 	rm -rf $(BUILD_DIR)/*
+
