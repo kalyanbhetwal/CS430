@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <string.h>
 
 unsigned long long fibonacci(int n) {
     if (n == 0) {
@@ -10,20 +9,9 @@ unsigned long long fibonacci(int n) {
     else if (n == 1) {
         return 1;
     }
-
-    // set up initial variables
-    unsigned long long c0 = 0;
-    unsigned long long c1 = 1;
-    unsigned long long c2 = 0;
-    while (n >= 2) {
-        // use fibonacci recursion each iteration
-        c2 = c1 + c0;
-        // update the variables
-        c0 = c1;
-        c1 = c2;
-        n--;
+    else {
+        return fibonacci(n-1) + fibonacci(n-2);
     }
-    return(c2);
 }
 
 int main(int argc, char *argv[] ) {
