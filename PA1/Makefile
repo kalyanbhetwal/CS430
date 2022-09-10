@@ -23,7 +23,6 @@ GTEST_LIBS = $(GBUILD)/libgtest.a  $(GBUILD)/libgtest_main.a
 GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
                 $(GTEST_DIR)/include/gtest/internal/*.h
 
-
 TESTS := pa1_test
 all : $(BUILD_DIR)/bin/program $(GTEST_LIBS) ${TESTS}
 
@@ -71,5 +70,5 @@ $(GBUILD)/libgtest_main.a : $(GBUILD)/gtest-all.o $(GBUILD)/gtest_main.o
 pa1_test.o : test/pa1_test.c $(GTEST_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c test/pa1_test.c
 
-test_mihai : pa1_test.o $(GBUILD)/libgtest_main.a
+pa1_test : pa1_test.o $(GBUILD)/libgtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
