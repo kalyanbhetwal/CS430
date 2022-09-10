@@ -64,12 +64,12 @@ $(GBUILD)/libgtest.a : $(GBUILD)/gtest-all.o
 	mkdir -p $(@D)
 	$(AR) $(ARFLAGS) $@ $^
 
-$(GBUILD)/libgtest_main.a : $(GBUILD)/gtest_main.o
+$(GBUILD)/libgtest_main.a : $(GBUILD)/gtest-all.o $(GBUILD)/gtest_main.o
 	mkdir -p $(@D)
 	$(AR) $(ARFLAGS) $@ $^
 
 pa1_test.o : test/pa1_test.c $(GTEST_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c test/pa1_test.c
 
-test_mihai : pa1_test.o $(GBUILD)/gtest_main.o
+test_mihai : pa1_test.o $(GBUILD)/libgtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
