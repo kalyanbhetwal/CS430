@@ -3,9 +3,8 @@ CFLAGS=-I.
 
 BUILD_DIR := build
 OBJ_DIR := build/src
-SRCS := hellofunc.c hellomake.c
-OBJS :=  $(OBJ_DIR)/hellomake.o $(OBJ_DIR)/hellofunc.o # output object files
-TESTS:= test/pa1_test
+SRCS := hellomake.c
+OBJS :=  $(OBJ_DIR)/hellomake.o # output object files
 
 GTEST_DIR := lib/gtest/googletest
 GBUILD :=  build/bin/gtest
@@ -24,7 +23,7 @@ GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
                 $(GTEST_DIR)/include/gtest/internal/*.h
 
 TESTS := pa1_test
-all : $(BUILD_DIR)/bin/program $(GTEST_LIBS) ${TESTS}
+all : $(BUILD_DIR)/bin/program $(GTEST_LIBS) ${TESTS} $(BUILD_DIR)/test/src/%.o
 
 .PHONY: program
 	program: $(BUILD_DIR)/bin/program
@@ -32,6 +31,11 @@ all : $(BUILD_DIR)/bin/program $(GTEST_LIBS) ${TESTS}
 $(OBJ_DIR)/%.o: src/%.c
 	mkdir -p $(@D)
 	$(CC) -c $< -o $@
+
+$(OBJ_DIR)/program.a : $(OBJS)
+	mkdir -p $(@D)
+	$(AR) $(ARFLAGS) $@ $^
+
 
 $(BUILD_DIR)/bin/program: $(OBJS)
 	mkdir -p $(@D)
@@ -64,11 +68,17 @@ $(GBUILD)/libgtest.a : $(GBUILD)/gtest-all.o
 	$(AR) $(ARFLAGS) $@ $^
 
 $(GBUILD)/libgtest_main.a : $(GBUILD)/gtest-all.o $(GBUILD)/gtest_main.o
-	mkdir -p $(@D)
+	mkdir -p $(@D) 
 	$(AR) $(ARFLAGS) $@ $^
 
-pa1_test.o : test/pa1_test.c $(GTEST_HEADERS)
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c test/pa1_test.c
+$(BUILD_DIR)/test/src/%.o: src/%.c src/hellomake.h $(GTEST_HEADERS)
+	mkdir -p $(@D)
+	$(CC) -c $< -o $@
 
-pa1_test : pa1_test.o $(GBUILD)/libgtest_main.a
+$(BUILD_DIR)/test/pa1_test.o : test/pa1_test.c $(GTEST_HEADERS) src/hellomake.h
+	mkdir -p $(@D)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c test/pa1_test.c -o $@
+
+pa1_test : $(BUILD_DIR)/test/pa1_test.o $(GBUILD)/libgtest_main.a $(BUILD_DIR)/test/src/hellomake.o
+	mkdir -p $(@D)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@

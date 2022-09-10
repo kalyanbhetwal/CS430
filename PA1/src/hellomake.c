@@ -1,8 +1,10 @@
+#include <stdio.h>
 #include "hellomake.h"
 
-int main() {
-  // call a function in another file
-  myPrintHelloMake();
+int myPrintHelloMake(void) {
 
-  return(0);
+
+  printf("Hello makefiles!\n");
+
+  return 10000;
 }
