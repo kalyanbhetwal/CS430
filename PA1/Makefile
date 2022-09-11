@@ -3,7 +3,9 @@ CFLAGS=-I.
 
 BUILD_DIR := build
 OBJ_DIR := build/src
+OBJ_TEST_DIR := $(BUILD_DIR)/test/src
 OBJS :=  $(OBJ_DIR)/fibonacci.o $(OBJ_DIR)/fibonacci_main.o # output object files
+
 
 GTEST_DIR := lib/gtest/googletest
 GBUILD :=  build/bin/gtest
@@ -21,8 +23,10 @@ GTEST_LIBS = $(GBUILD)/libgtest.a  $(GBUILD)/libgtest_main.a
 GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
                 $(GTEST_DIR)/include/gtest/internal/*.h
 
+HEADERS = src/*.h
+
 TESTS := pa1_test
-all : fibonacci_main  $(GTEST_LIBS) ${TESTS}
+all : fibonacci_main leibniz_main monte-carlo_main $(GTEST_LIBS) ${TESTS}
 
 
 $(OBJ_DIR)/%.o: src/%.c
@@ -30,6 +34,23 @@ $(OBJ_DIR)/%.o: src/%.c
 	$(CC) -c $< -o $@
 
 fibonacci_main: $(OBJS)
+	mkdir -p build/bin
+	$(CC) $^ -o build/bin/$@
+
+
+$(OBJ_DIR)/%.o: src/leibniz.c src/leibniz_main.c
+	mkdir -p $(@D)
+	$(CC) -c $< -o $@
+
+leibniz_main: $(OBJ_DIR)/leibniz.o $(OBJ_DIR)/leibniz_main.o
+	mkdir -p build/bin
+	$(CC) $^ -o build/bin/$@
+
+$(OBJ_DIR)/%.o: src/monte-carlo.c src/monte-carlo.c
+	mkdir -p $(@D)
+	$(CC) -c $< -o $@
+
+monte-carlo_main: $(OBJ_DIR)/monte-carlo.o $(OBJ_DIR)/monte-carlo_main.o
 	mkdir -p build/bin
 	$(CC) $^ -o build/bin/$@
 
@@ -63,14 +84,14 @@ $(GBUILD)/libgtest_main.a : $(GBUILD)/gtest-all.o $(GBUILD)/gtest_main.o
 	mkdir -p $(@D) 
 	$(AR) $(ARFLAGS) $@ $^
 
-$(BUILD_DIR)/test/src/%.o: src/%.c src/fibonacci.h $(GTEST_HEADERS)
+$(BUILD_DIR)/test/src/%.o: src/%.c ${HEADERS} $(GTEST_HEADERS)
 	mkdir -p $(@D)
 	$(CC) -c $< -o $@
 
-$(BUILD_DIR)/test/pa1_test.o : test/pa1_test.c src/fibonacci.h $(GTEST_HEADERS) 
+$(BUILD_DIR)/test/pa1_test.o : test/pa1_test.c ${HEADERS} $(GTEST_HEADERS) 
 	mkdir -p $(@D)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c test/pa1_test.c -o $@
 
-pa1_test : $(BUILD_DIR)/test/pa1_test.o $(GBUILD)/libgtest_main.a $(BUILD_DIR)/test/src/fibonacci.o
+pa1_test : $(BUILD_DIR)/test/pa1_test.o $(GBUILD)/libgtest_main.a $(OBJ_TEST_DIR)/fibonacci.o $(OBJ_TEST_DIR)/leibniz.o $(OBJ_TEST_DIR)/monte-carlo.o
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o build/bin/$@
 	./build/bin/pa1_test
