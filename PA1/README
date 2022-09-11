@@ -1,17 +1,18 @@
 =================================
-README for IEGenLib
+README for PA1
 =================================
-IEGenLib is a library that represents and manipulates integer sets and
-relations that have affine and uninterpreted function constraints.
+For PA1, we wrote 5 algorithms in serialized form as a base for later parallelization attempts.
+ We also created a build system and test suite that we should be able to use and/or build on in 
+ future projects. Below is a description of each algorithm and how it functions.
+
 
 Contents of this README:
 
 I.    Getting The Source Code
 II.   Quick Start
-         A. Building IEGenLib
-         B. Replicating relation simplification result from the SC 2016 paper
+         A. Building PA1
 III.  Distribution Organization
-IV.   Building IEGenLib from Source
+IV.   Building PA1 from Source
 V.    Running Tests
 VI.   Documentation
 VII.  Tutorial Examples
