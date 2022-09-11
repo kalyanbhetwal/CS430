@@ -5,11 +5,11 @@
 #include "gtest/gtest.h"
 
 extern "C" {
-#include "../src/hellomake.h"
+#include "../src/fibonacci.h" 
 }
 
 TEST(testMath, myTest)
 {   
-    int a  = myPrintHelloMake();
+    int a  = fibonacci(10);
     EXPECT_EQ(10000, a); 
 } 

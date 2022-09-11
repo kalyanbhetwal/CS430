@@ -4,7 +4,7 @@ CFLAGS=-I.
 BUILD_DIR := build
 OBJ_DIR := build/src
 SRCS := hellomake.c
-OBJS :=  $(OBJ_DIR)/hellomake.o # output object files
+OBJS :=  $(OBJ_DIR)/fibonacci.o # output object files
 
 GTEST_DIR := lib/gtest/googletest
 GBUILD :=  build/bin/gtest
@@ -23,23 +23,24 @@ GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
                 $(GTEST_DIR)/include/gtest/internal/*.h
 
 TESTS := pa1_test
-all : $(BUILD_DIR)/bin/program $(GTEST_LIBS) ${TESTS} $(BUILD_DIR)/test/src/%.o
+all : $(BUILD_DIR)/bin/fibonacci $(BUILD_DIR)/bin/leibniz $(GTEST_LIBS) ${TESTS} $(BUILD_DIR)/test/src/%.o
 
-.PHONY: program
-	program: $(BUILD_DIR)/bin/program
+# .PHONY: program
+# 	program: $(BUILD_DIR)/bin/program
 
 $(OBJ_DIR)/%.o: src/%.c
 	mkdir -p $(@D)
 	$(CC) -c $< -o $@
 
-$(OBJ_DIR)/program.a : $(OBJS)
-	mkdir -p $(@D)
-	$(AR) $(ARFLAGS) $@ $^
-
-
-$(BUILD_DIR)/bin/program: $(OBJS)
+$(BUILD_DIR)/bin/fibonacci: $(OBJS)
 	mkdir -p $(@D)
 	$(CC) $^ -o $@
+
+# $(OBJ_DIR)/program.a : $(OBJS)
+# 	mkdir -p $(@D)
+# 	$(AR) $(ARFLAGS) $@ $^
+
+
 
 clean:
 	rm -rf $(BUILD_DIR)/*
@@ -71,14 +72,14 @@ $(GBUILD)/libgtest_main.a : $(GBUILD)/gtest-all.o $(GBUILD)/gtest_main.o
 	mkdir -p $(@D) 
 	$(AR) $(ARFLAGS) $@ $^
 
-$(BUILD_DIR)/test/src/%.o: src/%.c src/hellomake.h $(GTEST_HEADERS)
+$(BUILD_DIR)/test/src/%.o: src/%.c src/fibonacci.h $(GTEST_HEADERS)
 	mkdir -p $(@D)
 	$(CC) -c $< -o $@
 
-$(BUILD_DIR)/test/pa1_test.o : test/pa1_test.c $(GTEST_HEADERS) src/hellomake.h
+$(BUILD_DIR)/test/pa1_test.o : test/pa1_test.c src/fibonacci.h $(GTEST_HEADERS) 
 	mkdir -p $(@D)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c test/pa1_test.c -o $@
 
-pa1_test : $(BUILD_DIR)/test/pa1_test.o $(GBUILD)/libgtest_main.a $(BUILD_DIR)/test/src/hellomake.o
+pa1_test : $(BUILD_DIR)/test/pa1_test.o $(GBUILD)/libgtest_main.a $(BUILD_DIR)/test/src/fibonacci.o
 	mkdir -p $(@D)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
