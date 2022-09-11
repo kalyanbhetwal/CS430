@@ -1,8 +1,8 @@
 
 
-%=================================
-%README for IEGenLib
-%=================================
+=================================
+README for IEGenLib
+=================================
 IEGenLib is a library that represents and manipulates integer sets and
 relations that have affine and uninterpreted function constraints.
 
