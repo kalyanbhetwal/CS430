@@ -1,21 +1,17 @@
-Phillip Bruce
-Kalyan Bhetwal
-Paul Vanderveen
-
 =================================
 README for IEGenLib
 =================================
-
-For PA 1, we wrote 5 algorithms in serialized form as a base for later parallelization attempts. We also created a build system and test suite that we should be able to use and/or build on in future projects. Below is a description of each algorithm and how it functions.
+IEGenLib is a library that represents and manipulates integer sets and
+relations that have affine and uninterpreted function constraints.
 
 Contents of this README:
 
 I.    Getting The Source Code
 II.   Quick Start
-         A. Building PA1
+         A. Building IEGenLib
          B. Replicating relation simplification result from the SC 2016 paper
 III.  Distribution Organization
-IV.   Building PA1 from Source
+IV.   Building IEGenLib from Source
 V.    Running Tests
 VI.   Documentation
 VII.  Tutorial Examples
@@ -180,6 +176,10 @@ To show actual build commands, you can run the verbose version of the build:
 ==== IX. Contact =====
 
 For more information please contact:
+
+Dr. Michelle Strout, mstrout@cs.arizona.edu
+
+
 
 
 
