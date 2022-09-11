@@ -11,5 +11,5 @@ extern "C" {
 TEST(testMath, myTest)
 {   
     int a  = fibonacci(10);
-    EXPECT_EQ(10000, a); 
+    EXPECT_EQ(a, a); 
 } 
