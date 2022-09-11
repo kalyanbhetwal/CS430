@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+=======
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+>>>>>>> d5cc720c5c4bf03d3accdf8168abdeeb7ca3ada7
 
 #include <stdio.h>
 #include <stdlib.h>
