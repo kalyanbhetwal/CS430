@@ -11,7 +11,9 @@ int main(int argc, char *argv[]){
 	}
     struct matrixVector* result;
     result = matrixMultiply(argv[1], argv[2]);
-    // for(int i = 0 ; i< result->nrows;i++){
-    //     printf("%lf\n", result->A[i]);
-    // }
+
+    printf("The result of  matrix vector Multiplication \n");
+    for(int i = 0 ; i< result->nrows;i++){
+        printf("%lf\n", result->A[i]);
+    }
 }

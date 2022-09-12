@@ -1,14 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../lib/mmio.h"
-
-typedef struct matrixVector
-{
-    /* data */
-    int nrows;
-    int ncolumns;
-    double *A;
-} matrixVector;
+#include "matrix-vector.h"
 
 struct matrixVector* readMatrix(char* file1)
 {

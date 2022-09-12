@@ -38,7 +38,7 @@ fibonacci_main: $(OBJS)
 	$(CC) $^ -o build/bin/$@
 
 
-$(OBJ_DIR)/%.o: src/leibniz.c src/leibniz_main.c
+$(OBJ_DIR)/%.o: src/leibniz.c src/leibniz_main.h
 	mkdir -p $(@D)
 	$(CC) -c $< -o $@
 
@@ -46,7 +46,7 @@ leibniz_main: $(OBJ_DIR)/leibniz.o $(OBJ_DIR)/leibniz_main.o
 	mkdir -p build/bin
 	$(CC) $^ -o build/bin/$@
 
-$(OBJ_DIR)/%.o: src/monte-carlo.c src/monte-carlo.c
+$(OBJ_DIR)/%.o: src/monte-carlo.c src/monte-carlo.h
 	mkdir -p $(@D)
 	$(CC) -c $< -o $@
 
@@ -58,11 +58,19 @@ lib/%.o: lib/mmio.c lib/mmio.h
 	mkdir -p $(@D)
 	$(CC) -c $< -o $@
 
-matrix-vector_main: lib/mmio.o src/matrix-vector.c
+$(OBJ_DIR)/%.o: src/matrix-vector.c src/matrix-vector.h
+	mkdir -p $(@D)
+	$(CC) -c $< -o $@
+
+matrix-vector_main: lib/mmio.o $(OBJ_DIR)/matrix-vector.o $(OBJ_DIR)/matrix-vector_main.o
 	mkdir -p build/bin
 	$(CC) $^ -o build/bin/$@
 
-matrix-matrix_main: lib/mmio.o src/matrix-matrix.c
+$(OBJ_DIR)/%.o: src/matrix-matrix.c src/matrix-matrix.h
+	mkdir -p $(@D)
+	$(CC) -c $< -o $
+
+matrix-matrix_main: lib/mmio.o $(OBJ_DIR)/matrix-matrix.o $(OBJ_DIR)/matrix-matrix_main.o
 	mkdir -p build/bin
 	$(CC) $^ -o build/bin/$@
 clean:
@@ -95,7 +103,7 @@ $(GBUILD)/libgtest_main.a : $(GBUILD)/gtest-all.o $(GBUILD)/gtest_main.o
 	mkdir -p $(@D) 
 	$(AR) $(ARFLAGS) $@ $^
 
-$(BUILD_DIR)/test/src/%.o: src/%.c ${HEADERS} $(GTEST_HEADERS)
+$(BUILD_DIR)/test/src/%.o: src/%.c lib/mmio.h lib/mmio.c ${HEADERS} $(GTEST_HEADERS)
 	mkdir -p $(@D)
 	$(CC) -c $< -o $@
 
@@ -103,6 +111,6 @@ $(BUILD_DIR)/test/pa1_test.o : test/pa1_test.c ${HEADERS} $(GTEST_HEADERS)
 	mkdir -p $(@D)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c test/pa1_test.c -o $@
 
-pa1_test : $(BUILD_DIR)/test/pa1_test.o $(GBUILD)/libgtest_main.a $(OBJ_TEST_DIR)/fibonacci.o $(OBJ_TEST_DIR)/leibniz.o $(OBJ_TEST_DIR)/monte-carlo.o
+pa1_test : $(BUILD_DIR)/test/pa1_test.o $(GBUILD)/libgtest_main.a $(OBJ_TEST_DIR)/fibonacci.o $(OBJ_TEST_DIR)/leibniz.o $(OBJ_TEST_DIR)/monte-carlo.o $(OBJ_TEST_DIR)/matrix-vector.o $(OBJ_TEST_DIR)/matrix-matrix.o 
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o build/bin/$@
 	./build/bin/pa1_test
