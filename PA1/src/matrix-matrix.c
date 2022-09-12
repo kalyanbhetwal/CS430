@@ -85,18 +85,21 @@ struct matrixVector*  matrixMultiply(char* file1 , char* file2){
     m2 = readMatrix(file2);
   
     //double* result;
-    res->A = malloc( m1->nrows * sizeof(double));
-    
-    for(int i=0;i < m1->nrows;i++){
+    res->A = malloc( m1->nrows*m2->ncolumns * sizeof(double));
+    int counter=0;
+    for(int i=0; i < m1->nrows;i++){
+        for(int j=0; j< m2->ncolumns ;j++){
         double result1 = 0;
-        for(int j = 0;j <m2-> nrows ;j++){
-           result1+=m1->A[i*m1->ncolumns+j]*m2->A[j]; 
+        for(int k = 0;k <m1-> nrows ;k++){
+           result1+=m1->A[i*m1->ncolumns+k]*m2->A[j+k*m2->ncolumns]; 
         }
-       res->A[i] = result1;
+       res->A[counter] = result1;
+       counter++;
       // printf("%lf\n", res->A[i]);
     }
-    res->nrows = m1->nrows;
-    res->ncolumns = 1;
+    }
+    res->nrows = counter;
+    res->ncolumns = m2->ncolumns;
     return res;
 }
 int main(int argc, char *argv[]){
