@@ -1,31 +1,25 @@
-<<<<<<< HEAD
-=======
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
->>>>>>> d5cc720c5c4bf03d3accdf8168abdeeb7ca3ada7
-
 #include <stdio.h>
 #include <stdlib.h>
 #include "../lib/mmio.h"
 
-int main(int argc, char *argv[])
+typedef struct matrixVector
 {
+    /* data */
+    int nrows;
+    int ncolumns;
+    double *A;
+} matrixVector;
+
+struct matrixVector* readMatrix(char* file1)
+{
+    struct matrixVector* m1;
+    m1 = malloc( sizeof(struct matrixVector));
     int ret_code;
     MM_typecode matcode;
     FILE *f;
-    int M, N, nz;   
-    int i, *I, *J;
-    double *val;
+    int i;
 
-    if (argc < 2)
-	{
-		fprintf(stderr, "Usage: %s [martix-market-filename]\n", argv[0]);
-		exit(1);
-	}
-    else    
-    { 
-        if ((f = fopen(argv[1], "r")) == NULL) 
+    if ((f = fopen(file1, "r")) == NULL) {
             exit(1);
     }
 
@@ -47,40 +41,75 @@ int main(int argc, char *argv[])
         exit(1);
     }
 
-    /* find out size of sparse matrix .... */
+    /* find out size of array matrix .... */
 
-    if ((ret_code = mm_read_mtx_crd_size(f, &M, &N, &nz)) !=0)
+    if ((ret_code = mm_read_mtx_array_size(f, &(m1->nrows), &(m1->ncolumns))) !=0)
         exit(1);
-
-
     /* reseve memory for matrices */
-
-    I = (int *) malloc(nz * sizeof(int));
-    J = (int *) malloc(nz * sizeof(int));
-    val = (double *) malloc(nz * sizeof(double));
+    int num_elem = m1->nrows * m1->ncolumns;
+    (m1->A) = (double *) malloc(num_elem * sizeof(double));
+    double *val = (double *) malloc(num_elem * sizeof(double));
 
 
     /* NOTE: when reading in doubles, ANSI C requires the use of the "l"  */
     /*   specifier as in "%lg", "%lf", "%le", otherwise errors will occur */
     /*  (ANSI C X3.159-1989, Sec. 4.9.6.2, p. 136 lines 13-15)            */
-
-    for (i=0; i<nz; i++)
+    for (i=0; i< num_elem; i++)
     {
-        fscanf(f, "%d %d %lg\n", &I[i], &J[i], &val[i]);
-        I[i]--;  /* adjust from 1-based to 0-based */
-        J[i]--;
+        fscanf(f, "%lf\n", &(m1->A)[i]);
     }
+    return m1;
+    // if (f !=stdin) fclose(f);
+   
+    // return m1;
+    // /************************/
+    // /* now write out matrix */
+    // /************************/
 
-    if (f !=stdin) fclose(f);
+    // mm_write_banner(stdout, matcode);
+    // mm_write_mtx_crd_size(stdout, M, N, nz);
+    // for (i=0; i<nz; i++)
+    //     fprintf(stdout, "%d %d %20.19g\n", I[i]+1, J[i]+1, val[i]);
 
-    /************************/
-    /* now write out matrix */
-    /************************/
 
-    mm_write_banner(stdout, matcode);
-    mm_write_mtx_crd_size(stdout, M, N, nz);
-    for (i=0; i<nz; i++)
-        fprintf(stdout, "%d %d %20.19g\n", I[i]+1, J[i]+1, val[i]);
+}
 
-	return 0;
+struct matrixVector*  matrixMultiply(char* file1 , char* file2){
+
+    struct matrixVector* res;
+    res = malloc(sizeof(struct matrixVector));
+    struct matrixVector* m1;
+    m1 = malloc( sizeof(struct matrixVector));
+    m1 = readMatrix(file1);
+    struct matrixVector* m2;
+    m2 = malloc( sizeof(struct matrixVector));
+    m2 = readMatrix(file2);
+  
+    //double* result;
+    res->A = malloc( m1->nrows * sizeof(double));
+    
+    for(int i=0;i < m1->nrows;i++){
+        double result1 = 0;
+        for(int j = 0;j <m2-> nrows ;j++){
+           result1+=m1->A[i*m1->ncolumns+j]*m2->A[j]; 
+        }
+       res->A[i] = result1;
+      // printf("%lf\n", res->A[i]);
+    }
+    res->nrows = m1->nrows;
+    res->ncolumns = 1;
+    return res;
+}
+int main(int argc, char *argv[]){
+    if (argc < 3)
+	{
+		fprintf(stderr, "Usage: %s [martix-market-filename]\n", argv[0]);
+		exit(1);
+	}
+    struct matrixVector* result;
+    result = matrixMultiply(argv[1], argv[2]);
+    // for(int i = 0 ; i< result->nrows;i++){
+    //     printf("%lf\n", result->A[i]);
+    // }
+
 }

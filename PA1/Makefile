@@ -26,7 +26,7 @@ GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
 HEADERS = src/*.h
 
 TESTS := pa1_test
-all : fibonacci_main leibniz_main monte-carlo_main $(GTEST_LIBS) ${TESTS}
+all : fibonacci_main leibniz_main monte-carlo_main matrix-vector_main $(GTEST_LIBS) ${TESTS}
 
 
 $(OBJ_DIR)/%.o: src/%.c
@@ -53,6 +53,15 @@ $(OBJ_DIR)/%.o: src/monte-carlo.c src/monte-carlo.c
 monte-carlo_main: $(OBJ_DIR)/monte-carlo.o $(OBJ_DIR)/monte-carlo_main.o
 	mkdir -p build/bin
 	$(CC) $^ -o build/bin/$@
+
+lib/%.o: lib/mmio.c lib/mmio.h
+	mkdir -p $(@D)
+	$(CC) -c $< -o $@
+
+matrix-vector_main: lib/mmio.o src/matrix-vector.c
+	mkdir -p build/bin
+	$(CC) $^ -o build/bin/$@
+
 
 clean:
 	rm -rf $(BUILD_DIR)/*

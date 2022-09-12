@@ -35,7 +35,7 @@ double get_pi(int digits) {
     acc = (2*acc) / term;
     double acc2 = acc + (double) 2 / term;
     double next = 0.0;
-    printf("%.9f, %.9f\n", acc, acc2);
+    //printf("%.9f, %.9f\n", acc, acc2);
     while (accurate == 0) {
         // get the next term
         if (term % 2 == 0) {
