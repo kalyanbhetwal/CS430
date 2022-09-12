@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "matrix-vector.h"
-
+#include "matrix-matrix.h"
 
 int main(int argc, char *argv[]){
     if (argc < 3)
@@ -14,4 +13,5 @@ int main(int argc, char *argv[]){
     // for(int i = 0 ; i< result->nrows;i++){
     //     printf("%lf\n", result->A[i]);
     // }
+
 }

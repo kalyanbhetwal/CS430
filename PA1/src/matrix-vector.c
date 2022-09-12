@@ -100,16 +100,3 @@ struct matrixVector*  matrixMultiply(char* file1 , char* file2){
     res->ncolumns = 1;
     return res;
 }
-int main(int argc, char *argv[]){
-    if (argc < 3)
-	{
-		fprintf(stderr, "Usage: %s [martix-market-filename]\n", argv[0]);
-		exit(1);
-	}
-    struct matrixVector* result;
-    result = matrixMultiply(argv[1], argv[2]);
-    // for(int i = 0 ; i< result->nrows;i++){
-    //     printf("%lf\n", result->A[i]);
-    // }
-
-}

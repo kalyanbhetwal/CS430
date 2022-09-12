@@ -1,4 +1,3 @@
-
 typedef struct matrixVector
 {
     /* data */
