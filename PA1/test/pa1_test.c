@@ -9,6 +9,7 @@ extern "C" {
 #include "../src/leibniz.h"
 #include "../src/monte-carlo.h"
 #include "../src/matrix-vector.h"
+#include "../src/matrix-matrix.h"
 }
 
 TEST(TESTfibonacci, myTest1)
@@ -64,7 +65,7 @@ TEST(TESTMatrixVector, myTest1)
     
     char file2[2048];
     getcwd(file2,2048);
-    strcat(file2,"/var/test2.mm");
+    strcat(file2,"/var/testvec.mm");
 
 
     result = matrixVectorMultiply(file1, file2);
@@ -78,3 +79,31 @@ TEST(TESTMatrixVector, myTest1)
         EXPECT_EQ(result->A[i], array[i]) << "Vectors x and y differ at index " << i;
     }
 } 
+
+
+TEST(TESTMatrixMatrix, myTest1)
+{   
+    struct matrixMatrix* result;
+
+    float array[9] = {30.000000,36.000000,42.000000,66.000000,81.000000,96.000000,102.000000,126.000000,150.000000};
+    char file1[2048];
+    getcwd(file1,2048);
+    strcat(file1,"/var/test.mm");
+    
+    char file2[2048];
+    getcwd(file2,2048);
+    strcat(file2,"/var/test2.mm");
+
+
+    result = matrixMultiply(file1, file2);
+
+    printf("The result of  matrix vector Multiplication \n");
+    for(int i = 0 ; i< result->nrows;i++){
+        printf("%lf\n", result->A[i]);
+    }
+
+    for (int i = 0; i < result->nrows; ++i) {
+        EXPECT_EQ(result->A[i], array[i]) << "Vectors x and y differ at index " << i;
+    }
+} 
+
