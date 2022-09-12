@@ -10,7 +10,7 @@ int main(int argc, char *argv[]){
 		exit(1);
 	}
     struct matrixVector* result;
-    result = matrixMultiply(argv[1], argv[2]);
+    result = matrixVectorMultiply(argv[1], argv[2]);
 
     printf("The result of  matrix vector Multiplication \n");
     for(int i = 0 ; i< result->nrows;i++){

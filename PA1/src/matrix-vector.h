@@ -13,7 +13,7 @@ typedef struct matrixVector
     double *A;
 } matrixVector;
 
-struct matrixVector* readMatrix(char* file1);
-struct matrixVector*  matrixMultiply(char* file1 , char* file2);
+struct matrixVector* readMatrixVector(char* file1);
+struct matrixVector*  matrixVectorMultiply(char* file1 , char* file2);
 
 #endif //PA1_MATRIX_VECTOR_H

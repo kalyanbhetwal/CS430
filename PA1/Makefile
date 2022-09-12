@@ -103,7 +103,7 @@ $(GBUILD)/libgtest_main.a : $(GBUILD)/gtest-all.o $(GBUILD)/gtest_main.o
 	mkdir -p $(@D) 
 	$(AR) $(ARFLAGS) $@ $^
 
-$(BUILD_DIR)/test/src/%.o: src/%.c lib/mmio.h lib/mmio.c ${HEADERS} $(GTEST_HEADERS)
+$(BUILD_DIR)/test/src/%.o: src/%.c  ${HEADERS} $(GTEST_HEADERS)
 	mkdir -p $(@D)
 	$(CC) -c $< -o $@
 
@@ -111,6 +111,6 @@ $(BUILD_DIR)/test/pa1_test.o : test/pa1_test.c ${HEADERS} $(GTEST_HEADERS)
 	mkdir -p $(@D)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c test/pa1_test.c -o $@
 
-pa1_test : $(BUILD_DIR)/test/pa1_test.o $(GBUILD)/libgtest_main.a $(OBJ_TEST_DIR)/fibonacci.o $(OBJ_TEST_DIR)/leibniz.o $(OBJ_TEST_DIR)/monte-carlo.o $(OBJ_TEST_DIR)/matrix-vector.o $(OBJ_TEST_DIR)/matrix-matrix.o 
+pa1_test : $(BUILD_DIR)/test/pa1_test.o $(GBUILD)/libgtest_main.a $(OBJ_TEST_DIR)/fibonacci.o $(OBJ_TEST_DIR)/leibniz.o $(OBJ_TEST_DIR)/monte-carlo.o $(OBJ_TEST_DIR)/matrix-vector.o   $(OBJ_TEST_DIR)/matrix-matrix.o lib/mmio.o
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o build/bin/$@
 	./build/bin/pa1_test

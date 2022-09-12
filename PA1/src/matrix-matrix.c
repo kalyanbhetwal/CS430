@@ -3,10 +3,10 @@
 #include "../lib/mmio.h"
 #include "matrix-matrix.h"
 
-struct matrixVector* readMatrix(char* file1)
+struct matrixMatrix* readMatrix(char* file1)
 {
-    struct matrixVector* m1;
-    m1 = malloc( sizeof(struct matrixVector));
+    struct matrixMatrix* m1;
+    m1 = malloc( sizeof(struct matrixMatrix));
     int ret_code;
     MM_typecode matcode;
     FILE *f;
@@ -66,15 +66,15 @@ struct matrixVector* readMatrix(char* file1)
 
 }
 
-struct matrixVector*  matrixMultiply(char* file1 , char* file2){
+struct matrixMatrix*  matrixMultiply(char* file1 , char* file2){
 
-    struct matrixVector* res;
-    res = malloc(sizeof(struct matrixVector));
-    struct matrixVector* m1;
-    m1 = malloc( sizeof(struct matrixVector));
+    struct matrixMatrix* res;
+    res = malloc(sizeof(struct matrixMatrix));
+    struct matrixMatrix* m1;
+    m1 = malloc( sizeof(struct matrixMatrix));
     m1 = readMatrix(file1);
-    struct matrixVector* m2;
-    m2 = malloc( sizeof(struct matrixVector));
+    struct matrixMatrix* m2;
+    m2 = malloc( sizeof(struct matrixMatrix));
     m2 = readMatrix(file2);
   
     //double* result;

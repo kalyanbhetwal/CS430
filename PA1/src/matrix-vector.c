@@ -3,7 +3,7 @@
 #include "../lib/mmio.h"
 #include "matrix-vector.h"
 
-struct matrixVector* readMatrix(char* file1)
+struct matrixVector* readMatrixVector(char* file1)
 {
     struct matrixVector* m1;
     m1 = malloc( sizeof(struct matrixVector));
@@ -67,16 +67,16 @@ struct matrixVector* readMatrix(char* file1)
 
 }
 
-struct matrixVector*  matrixMultiply(char* file1 , char* file2){
+struct matrixVector*  matrixVectorMultiply(char* file1 , char* file2){
 
     struct matrixVector* res;
     res = malloc(sizeof(struct matrixVector));
     struct matrixVector* m1;
     m1 = malloc( sizeof(struct matrixVector));
-    m1 = readMatrix(file1);
+    m1 = readMatrixVector(file1);
     struct matrixVector* m2;
     m2 = malloc( sizeof(struct matrixVector));
-    m2 = readMatrix(file2);
+    m2 = readMatrixVector(file2);
   
     //double* result;
     res->A = malloc( m1->nrows * sizeof(double));
