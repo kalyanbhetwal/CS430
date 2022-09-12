@@ -23,7 +23,7 @@ GTEST_LIBS = $(GBUILD)/libgtest.a  $(GBUILD)/libgtest_main.a
 GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
                 $(GTEST_DIR)/include/gtest/internal/*.h
 
-HEADERS = src/*.h
+HEADERS = include/*.h
 
 TESTS := pa1_test
 all : fibonacci_main leibniz_main monte-carlo_main matrix-vector_main matrix-matrix_main $(GTEST_LIBS) ${TESTS}
@@ -38,7 +38,7 @@ fibonacci_main: $(OBJS)
 	$(CC) $^ -o build/bin/$@
 
 
-$(OBJ_DIR)/%.o: src/leibniz.c src/leibniz_main.h
+$(OBJ_DIR)/%.o: src/leibniz.c include/leibniz_main.h
 	mkdir -p $(@D)
 	$(CC) -c $< -o $@
 
@@ -46,7 +46,7 @@ leibniz_main: $(OBJ_DIR)/leibniz.o $(OBJ_DIR)/leibniz_main.o
 	mkdir -p build/bin
 	$(CC) $^ -o build/bin/$@
 
-$(OBJ_DIR)/%.o: src/monte-carlo.c src/monte-carlo.h
+$(OBJ_DIR)/%.o: src/monte-carlo.c include/monte-carlo.h
 	mkdir -p $(@D)
 	$(CC) -c $< -o $@
 
@@ -58,7 +58,7 @@ lib/%.o: lib/mmio.c lib/mmio.h
 	mkdir -p $(@D)
 	$(CC) -c $< -o $@
 
-$(OBJ_DIR)/%.o: src/matrix-vector.c src/matrix-vector.h
+$(OBJ_DIR)/%.o: src/matrix-vector.c include/matrix-vector.h
 	mkdir -p $(@D)
 	$(CC) -c $< -o $@
 
@@ -66,7 +66,7 @@ matrix-vector_main: lib/mmio.o $(OBJ_DIR)/matrix-vector.o $(OBJ_DIR)/matrix-vect
 	mkdir -p build/bin
 	$(CC) $^ -o build/bin/$@
 
-$(OBJ_DIR)/%.o: src/matrix-matrix.c src/matrix-matrix.h
+$(OBJ_DIR)/%.o: src/matrix-matrix.c include/matrix-matrix.h
 	mkdir -p $(@D)
 	$(CC) -c $< -o $
 
