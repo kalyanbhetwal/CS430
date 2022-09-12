@@ -76,7 +76,7 @@ output; graphviz is needed to visualize the dot output.
 
     Build and Test without creating an install directory
         make
-        make test
+        make pa1_test
 
 
     Requirements
