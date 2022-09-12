@@ -8,7 +8,7 @@ int main(int argc, char *argv[]){
 		fprintf(stderr, "Usage: %s [martix-market-filename]\n", argv[0]);
 		exit(1);
 	}
-    struct matrixVector* result;
+    struct matrixMatrix* result;
     result = matrixMultiply(argv[1], argv[2]);
    
     printf("The result of  matrix vector Multiplication \n");
