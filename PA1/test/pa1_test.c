@@ -97,10 +97,10 @@ TEST(TESTMatrixMatrix, myTest1)
 
     result = matrixMultiply(file1, file2);
 
-    printf("The result of  matrix vector Multiplication \n");
-    for(int i = 0 ; i< result->nrows;i++){
-        printf("%lf\n", result->A[i]);
-    }
+    // printf("The result of  matrix vector Multiplication \n");
+    // for(int i = 0 ; i< result->nrows;i++){
+    //     printf("%lf\n", result->A[i]);
+    // }
 
     for (int i = 0; i < result->nrows; ++i) {
         EXPECT_EQ(result->A[i], array[i]) << "Vectors x and y differ at index " << i;
