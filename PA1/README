@@ -41,7 +41,7 @@ installed (see Requirements section below), then run:
     make matrix-matrix_main 
     make pa1_test
 
-==== IV. Building PA1 from Source =======================
+==== III. Building PA1 from Source =======================
 
     Build Command Sequence
         make
@@ -74,11 +74,11 @@ work or do not work for you.
 
 
 
-==== V. Running Tests =====
+==== IV. Running Tests =====
 
-The ${PA1_HOME}/bin/build/pa1_test binary can be executed to run the tests of
+The *${PA1_HOME}/bin/build/pa1_test* binary can be executed to run the tests of
 the various components of PA1. Additionally, from the root of the
-distribution you can run 'make test' to run these same tests.
+distribution you can run '*make test*' to run these same tests.
 
 The gtest framework is used for writing and running unit tests.  Information
 on gtest can be found at:
@@ -89,7 +89,7 @@ and introductory documentation is at:
 
     http://code.google.com/p/googletest/wiki/V1_6_Primer
 
-==== VI. Documentation =====
+==== V. Documentation =====
 
 
 PI: Leibniz's Series:
@@ -107,9 +107,10 @@ points tested (N) is multiplied by 4. The result should be a close estimate of
 the value of PI, with the number being more accurate with a higher N.
 
 Matrix-Vector Multiply:
-
+The Matrix Vector Multiply kernel takes a matrix and vector as input and multiplies them.
 
 Matrix-Matrix Multiply:
+The Matrix Matrix Multiply kernel takes two matrix as input and multiplies them.
 
 
 Fibonacci Numbers:
@@ -119,7 +120,7 @@ F(1) = 1, F(0) = 0. It can be shown that the Fibonacci Numbers grow exponentiall
 F(n) can be reasonably be computed only for rather small n (say n < 94). 
 
 
-==== IX. Contact =====
+==== VI. Contact =====
 
 For more information please contact:
 
