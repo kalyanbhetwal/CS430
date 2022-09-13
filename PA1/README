@@ -49,8 +49,8 @@ installed (see Requirements section below), then run:
     Build individual Kernels
          make fibonacci_main 
          make leibniz_main 
-         make leibniz_main 
          make monte-carlo_main 
+         make matrix-matrix_main  
          make matrix-vector_main 
        
     Build and Test without creating an install directory
