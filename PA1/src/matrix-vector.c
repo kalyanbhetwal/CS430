@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../lib/mmio.h"
-#include "matrix-vector.h"
+#include "../include/matrix-vector.h"
 
 struct matrixVector* readMatrixVector(char* file1)
 {
@@ -80,7 +80,6 @@ struct matrixVector*  matrixVectorMultiply(char* file1 , char* file2){
 
       if ( m1->ncolumns!=m2->nrows ){
           printf(" Can't Multiply; input1 colums must be equal to input2 rows ");
-        return;
     }
   
     //double* result;

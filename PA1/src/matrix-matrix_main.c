@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "matrix-matrix.h"
+#include "../include/matrix-matrix.h"
 
 int main(int argc, char *argv[]){
     if (argc < 3)

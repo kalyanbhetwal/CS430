@@ -1,4 +1,4 @@
-#include "leibniz.h"
+#include "../include/leibniz.h"
 
 int main(int argc, char *argv[] ) {
 

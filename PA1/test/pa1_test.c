@@ -5,11 +5,11 @@
 #include "gtest/gtest.h"
 
 extern "C" {
-#include "../src/fibonacci.h" 
-#include "../src/leibniz.h"
-#include "../src/monte-carlo.h"
-#include "../src/matrix-vector.h"
-#include "../src/matrix-matrix.h"
+#include "../include/fibonacci.h" 
+#include "../include/leibniz.h"
+#include "../include/monte-carlo.h"
+#include "../include/matrix-vector.h"
+#include "../include/matrix-matrix.h"
 }
 
 TEST(TESTfibonacci, myTest1)

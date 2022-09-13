@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "fibonacci.h"
+#include "../include/fibonacci.h"
 unsigned long long fibonacci(int n) {
     // base case #1
     if (n == 0) {

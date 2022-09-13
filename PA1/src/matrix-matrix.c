@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../lib/mmio.h"
-#include "matrix-matrix.h"
+#include "../include/matrix-matrix.h"
 
 struct matrixMatrix* readMatrix(char* file1)
 {
@@ -76,6 +76,8 @@ struct matrixMatrix*  matrixMultiply(char* file1 , char* file2){
     struct matrixMatrix* m2;
     m2 = malloc( sizeof(struct matrixMatrix));
     m2 = readMatrix(file2);
+
+  
   
     //double* result;
     res->A = malloc( m1->nrows*m2->ncolumns * sizeof(double));
