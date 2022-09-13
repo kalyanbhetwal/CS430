@@ -76,9 +76,9 @@ work or do not work for you.
 
 ==== IV. Running Tests =====
 
-The ** ${PA1_HOME}/bin/build/pa1_test ** binary can be executed to run the tests of
+The ${PA1_HOME}/bin/build/pa1_test binary can be executed to run the tests of
 the various components of PA1. Additionally, from the root of the
-distribution you can run '*make test*' to run these same tests.
+distribution you can run 'make test' to run these same tests.
 
 The gtest framework is used for writing and running unit tests.  Information
 on gtest can be found at:
