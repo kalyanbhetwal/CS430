@@ -77,6 +77,11 @@ struct matrixVector*  matrixVectorMultiply(char* file1 , char* file2){
     struct matrixVector* m2;
     m2 = malloc( sizeof(struct matrixVector));
     m2 = readMatrixVector(file2);
+
+      if ( m1->ncolumns!=m2->nrows ){
+          printf(" Can't Multiply; input1 colums must be equal to input2 rows ");
+        return;
+    }
   
     //double* result;
     res->A = malloc( m1->nrows * sizeof(double));
