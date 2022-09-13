@@ -93,15 +93,18 @@ and introductory documentation is at:
 
 
 PI: Leibniz's Series:
-
+The Leibniz program computes the constant PI to a given precision (number of
+decimal places) using the Leibniz formula for PI: PI = 4 - 4/3 + 4/5 - 4/7 + ...
+To compute PI accurately to n digits, you need at least 10^n terms, so only a 
+relatively small number of digits can be computed in a reasonable amount of time.
 
 PI: Monte Carlo:
-The Monte Carlo algorithm calculates pi by imagining a circle inside a square,
+The Monte Carlo algorithm calculates PI by imagining a circle inside a square,
 where the diameter of the circle is the same as the side length of the square.
 N random points are randomly chosen within the square and checked if they land
 within the circle as well. Then, the ratio of points inside the circle to total
 points tested (N) is multiplied by 4. The result should be a close estimate of
-the value of pi, with the number being more accurate with a higher N.
+the value of PI, with the number being more accurate with a higher N.
 
 Matrix-Vector Multiply:
 
@@ -110,7 +113,10 @@ Matrix-Matrix Multiply:
 
 
 Fibonacci Numbers:
-
+The Fibonacci program computes the n-th Fibonacci Number using a recursive function
+which is based on the defined recursive relation F(n) = F(n-1) + F(n-2) if n > 1, 
+F(1) = 1, F(0) = 0. It can be shown that the Fibonacci Numbers grow exponentially, so
+F(n) can be reasonably be computed only for rather small n (say n < 94). 
 
 
 ==== IX. Contact =====
@@ -119,5 +125,5 @@ For more information please contact:
 
 Kalyan Bhetwal, kalyanbhetwal@u.boisestate.edu
 Phillip Bruce, phillipbruce@u.boisestate.edu
-Paul Vanderveen, 
+Paul Vanderveen, paulvanderveen@u.boisestate.edu
 
