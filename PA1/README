@@ -44,6 +44,7 @@ installed (see Requirements section below), then run:
     make pa1_test
     
 ---- B. Running Kernels for PA1 ----------
+
 If you want to run the individual kernels please use the below commands:
      ${PA1_HOME}/build/bin/fibonacci_main 10 
      ${PA1_HOME}/build/bin/leibniz_main 5
