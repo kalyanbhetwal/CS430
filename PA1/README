@@ -30,7 +30,7 @@ are being added. You can get the latest source code from this git repository:
 ==== II. Quick Start ===============
 
   A. Building PA1
-
+  B. Running Kernels for PA1
 ---- A. Building PA1 ----------
 
 If you want to do a quick build, first check that you have required packages
@@ -45,7 +45,11 @@ installed (see Requirements section below), then run:
     
 ---- B. Running Kernels for PA1 ----------
 If you want to run the individual kernels please use the below commands:
-     ${PA1_HOME}/build/bin/<kenel_names> <input>
+     ${PA1_HOME}/build/bin/fibonacci_main 10 
+     ${PA1_HOME}/build/bin/leibniz_main 5
+     ${PA1_HOME}/build/bin/monte-carlo_main 10 
+     ${PA1_HOME}/build/bin/matrix-vector_main var/test.mm var/testvec.mm  
+     ${PA1_HOME}/build/bin/matrix-matrix_main var/test.mm var/test2.mm 
 
 ==== III. Building PA1 from Source =======================
 
@@ -84,7 +88,7 @@ work or do not work for you.
 
 The ${PA1_HOME}/bin/build/pa1_test binary can be executed to run the tests of
 the various components of PA1. Additionally, from the root of the
-distribution you can run 'make test' to run these same tests.
+distribution you can run 'make pa1_test' to run these same tests.
 
 The gtest framework is used for writing and running unit tests.  Information
 on gtest can be found at:
