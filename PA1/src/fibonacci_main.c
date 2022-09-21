@@ -2,6 +2,10 @@
 
 int main(int argc, char *argv[] ) {
     // get index for fibonacci number from Command Line
+    if (argc == 1) {
+       printf("Please enter a positive number\n");
+       return(-1);
+    }
     char* strIndex = argv[1];
     int index = 0;
     // convert string index to integer

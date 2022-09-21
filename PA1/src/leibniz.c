@@ -35,7 +35,7 @@ double get_pi(int digits) {
     acc = (2*acc) / term;
     double acc2 = acc + (double) 2 / term;
     double next = 0.0;
-    printf("%.9f, %.9f\n", acc, acc2);
+    //printf("%.9f, %.9f\n", acc, acc2);
     while (accurate == 0) {
         // get the next term
         if (term % 2 == 0) {
@@ -56,23 +56,4 @@ double get_pi(int digits) {
     }
 
     return f;
-}
-
-int main(int argc, char *argv[] ) {
-
-    char* strIndex = argv[1];
-    int digits = 0;
-    if (argc == 1) {
-       return(-1);
-    }
-    // convert number of digits (as string) to integer
-    if (strcmp(strIndex,"0")!=0) {
-        digits = atoi(strIndex);
-    }
-
-    // calculate necessary precisison needed
-    // for n correct digits (decimal places) of PI
-    double f = get_pi(digits);
-    printf("%.30f\n", f);
-    return 0;
 }
