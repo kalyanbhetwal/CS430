@@ -31,6 +31,7 @@ are being added. You can get the latest source code from this git repository:
 
   A. Building PA1
   B. Running Kernels for PA1
+  
 ---- A. Building PA1 ----------
 
 If you want to do a quick build, first check that you have required packages
@@ -48,7 +49,7 @@ installed (see Requirements section below), then run:
 If you want to run the individual kernels please use the below commands:
      ${PA1_HOME}/build/bin/fibonacci_main 10 
      ${PA1_HOME}/build/bin/leibniz_main 5
-     ${PA1_HOME}/build/bin/monte-carlo_main 10 
+     ${PA1_HOME}/build/bin/monte-carlo_main 
      ${PA1_HOME}/build/bin/matrix-vector_main var/test.mm var/testvec.mm  
      ${PA1_HOME}/build/bin/matrix-matrix_main var/test.mm var/test2.mm 
 
