@@ -3,7 +3,6 @@
 int main(int argc, char *argv[] ) {
     // get index for fibonacci number from Command Line
     if (argc == 1) {
-       printf("Please enter a positive number\n");
        return(-1);
     }
     char* strIndex = argv[1];
@@ -18,7 +17,14 @@ int main(int argc, char *argv[] ) {
         fprintf(stderr, "%s", "Index must be a positive integer\n");
         return(-1);
     }
-
-    unsigned long long fib = fibonacci(index);
-    printf("The fibonacci number is %llu\n", fib);
+    
+    unsigned long long fib;
+    
+    #pragma omp parallel shared(fib, index) 
+    {
+      #pragma omp single
+      fib = fibonacci(index);
+    }
+    
+    printf("%llu", fib);
 }
