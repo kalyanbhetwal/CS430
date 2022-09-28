@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/time.h>
 #include <time.h>
+#include <omp.h>
 
 /**
  * Initialize the random number generator using the current time as the seed
@@ -35,15 +37,36 @@ float square(float num) {
  * @return - Estimated value of pi
  */
 float monteCarlo(long long maxIterations) {
-    initRand();
-    // radius should only be defined up to 2 digits past the decimal
-    // further digits will be lost in getRand
-    float radius = 3.0f;
+    // get start time
+    struct timeval start, end;
+    gettimeofday(&start, NULL);
+    // num of threads to use
+	int threads = 6;
     long long hits = 0;
-    for (long long iterationsLeft = maxIterations; iterationsLeft > 0; iterationsLeft--) {
-        if (square(getRand(radius)) + square(getRand(radius)) <= square( radius)) {
-            hits++;
-        }
-    }
+	omp_set_num_threads(threads);
+	#pragma omp parallel
+	{
+        #pragma omp single
+            printf("Number of threads = %d\n", omp_get_num_threads());
+		// init seed for thread
+		int seed = time(0);
+		rand_r(&seed);
+        float radius = 3.0f;
+        #pragma omp for reduction(+:hits)
+            for (long long iterationsLeft = maxIterations; iterationsLeft > 0; iterationsLeft--) {
+                if (square(getRand(radius)) + square(getRand(radius)) <= square( radius)) {
+                    hits++;
+                }
+            }
+	}
+    gettimeofday(&end, NULL);
+    time_t elapsed_time = end.tv_usec - start.tv_usec;
+    long int time_in_microseconds = ((end.tv_sec - start.tv_sec) * 1000000L + end.tv_usec) - start.tv_usec;
+    printf("Total time: %ld microseconds\n", time_in_microseconds);
+    printf("Or %ld milliseconds\n", time_in_microseconds / 1000);
     return 4 * ((float) hits / (float) maxIterations);
+}
+
+int main(int argc, char *argv[]) {
+    printf("%f\n", monteCarlo(99999999));
 }
