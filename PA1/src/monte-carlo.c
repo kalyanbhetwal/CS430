@@ -35,6 +35,9 @@ float square(float num) {
  * @return - Estimated value of pi
  */
 float monteCarlo(long long maxIterations) {
+    // get start time
+    struct timeval start, end;
+    gettimeofday(&start, NULL);
     initRand();
     // radius should only be defined up to 2 digits past the decimal
     // further digits will be lost in getRand
@@ -45,5 +48,10 @@ float monteCarlo(long long maxIterations) {
             hits++;
         }
     }
+    gettimeofday(&end, NULL);
+    time_t elapsed_time = end.tv_usec - start.tv_usec;
+    long int time_in_microseconds = ((end.tv_sec - start.tv_sec) * 1000000L + end.tv_usec) - start.tv_usec;
+    printf("Total time: %ld microseconds\n", time_in_microseconds);
+    printf("Or %ld milliseconds\n", time_in_microseconds / 1000);
     return 4 * ((float) hits / (float) maxIterations);
 }

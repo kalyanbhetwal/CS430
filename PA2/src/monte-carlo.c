@@ -4,6 +4,11 @@
 #include <time.h>
 #include <omp.h>
 
+// dev note: to compile:
+// gcc monte-carlo.c -o monte-carlo -fopenmp
+// to run:
+// ./monte-carlo
+
 /**
  * Initialize the random number generator using the current time as the seed
  */
@@ -41,7 +46,7 @@ float monteCarlo(long long maxIterations) {
     struct timeval start, end;
     gettimeofday(&start, NULL);
     // num of threads to use
-	int threads = 6;
+	int threads = 4;
     long long hits = 0;
 	omp_set_num_threads(threads);
 	#pragma omp parallel
@@ -68,5 +73,5 @@ float monteCarlo(long long maxIterations) {
 }
 
 int main(int argc, char *argv[]) {
-    printf("%f\n", monteCarlo(99999999));
+    printf("Pi: %f\n", monteCarlo(99999999));
 }
