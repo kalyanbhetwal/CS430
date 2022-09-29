@@ -1,16 +1,15 @@
 =================================
-README for PA1
+README for PA2
 =================================
-For PA1, we wrote 5 algorithms in serialized form as a base for later parallelization attempts.
+For PA1, we wrote parallized version of 5 algorithms using openmp.
 We also created a build system and test suite that we should be able to use and/or build on in 
 future projects.
-
 
 Contents of this README:
 
 I.   Getting The Source Code
 II.  Quick Start
-         A. Building PA1
+         A. Building PA2
 III. Building PA1 from Source
 IV.  Running Tests
 V.   Documentation
@@ -44,7 +43,7 @@ installed (see Requirements section below), then run:
     make matrix-matrix_main 
     make pa1_test
     
----- B. Running Kernels for PA1 ----------
+---- B. Running Kernels for PA2 ----------
 
 If you want to run the individual kernels please use the below commands:
      ${PA1_HOME}/build/bin/fibonacci_main 10 
