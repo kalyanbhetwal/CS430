@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+
 #include "../lib/mmio.h"
 #include "../include/matrix-matrix.h"
 
@@ -41,7 +42,7 @@ struct matrixMatrix* readMatrix(char* file1)
     /* reseve memory for matrices */
     int num_elem = m1->nrows * m1->ncolumns;
     (m1->A) = (double *) malloc(num_elem * sizeof(double));
-    double *val = (double *) malloc(num_elem * sizeof(double));
+    //double *val = (double *) malloc(num_elem * sizeof(double));
 
 
     /* NOTE: when reading in doubles, ANSI C requires the use of the "l"  */
@@ -76,24 +77,22 @@ struct matrixMatrix*  matrixMultiply(char* file1 , char* file2){
     struct matrixMatrix* m2;
     m2 = malloc( sizeof(struct matrixMatrix));
     m2 = readMatrix(file2);
-
-  
   
     //double* result;
     res->A = malloc( m1->nrows*m2->ncolumns * sizeof(double));
-    int counter=0;
+    #pragma omp parallel for
     for(int i=0; i < m1->nrows;i++){
         for(int j=0; j< m2->ncolumns ;j++){
-        double result1 = 0;
+        //double result1 = 0;
+        res->A[i*m2->ncolumns+j]=0;
         for(int k = 0;k <m1-> nrows ;k++){
-           result1+=m1->A[i*m1->ncolumns+k]*m2->A[j+k*m2->ncolumns]; 
-        }
-       res->A[counter] = result1;
-       counter++;
-      // printf("%lf\n", res->A[i]);
+            //int tid=omp_get_thread_num();
+            //printf("TID=%d\n",tid);
+           res->A[i*m2->ncolumns+j]+=m1->A[i*m1->ncolumns+k]*m2->A[j+k*m2->ncolumns]; 
+        } 
+     }
     }
-    }
-    res->nrows = counter;
+    res->nrows = m1->nrows;
     res->ncolumns = m2->ncolumns;
     return res;
 }

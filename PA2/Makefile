@@ -1,4 +1,4 @@
-CC=gcc
+CC=gcc -Wall -Wextra -fopenmp
 CFLAGS=-I.
 
 BUILD_DIR := build
@@ -10,10 +10,11 @@ OBJS :=  $(OBJ_DIR)/fibonacci.o $(OBJ_DIR)/fibonacci_main.o # output object file
 GTEST_DIR := lib/gtest/googletest
 GBUILD :=  build/bin/gtest
 
+
 CPPFLAGS += -isystem $(GTEST_DIR)/include -isystem $(GMOCK_DIR)/include
 
 # Flags passed to the C++ compiler.
-CXXFLAGS += -g -Wall -Wextra -pthread -std=c++11
+CXXFLAGS += -g -Wall -Wextra -pthread -std=c++11 -fopenmp
 
 # Google Test libraries
 GTEST_LIBS = $(GBUILD)/libgtest.a  $(GBUILD)/libgtest_main.a

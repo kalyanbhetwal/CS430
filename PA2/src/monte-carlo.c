@@ -65,13 +65,9 @@ float monteCarlo(long long maxIterations) {
             }
 	}
     gettimeofday(&end, NULL);
-    time_t elapsed_time = end.tv_usec - start.tv_usec;
+    //time_t elapsed_time = end.tv_usec - start.tv_usec;
     long int time_in_microseconds = ((end.tv_sec - start.tv_sec) * 1000000L + end.tv_usec) - start.tv_usec;
     printf("Total time: %ld microseconds\n", time_in_microseconds);
     printf("Or %ld milliseconds\n", time_in_microseconds / 1000);
     return 4 * ((float) hits / (float) maxIterations);
-}
-
-int main(int argc, char *argv[]) {
-    printf("Pi: %f\n", monteCarlo(99999999));
 }

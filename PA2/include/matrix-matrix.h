@@ -1,3 +1,4 @@
+#include <omp.h>
 
 #ifndef PA1_MATRIX_MATRIX_H
 #define PA1_MATRIX_MATRIX_H

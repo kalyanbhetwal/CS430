@@ -41,7 +41,7 @@ struct matrixVector* readMatrixVector(char* file1)
     /* reseve memory for matrices */
     int num_elem = m1->nrows * m1->ncolumns;
     (m1->A) = (double *) malloc(num_elem * sizeof(double));
-    double *val = (double *) malloc(num_elem * sizeof(double));
+    //double *val = (double *) malloc(num_elem * sizeof(double));
 
 
     /* NOTE: when reading in doubles, ANSI C requires the use of the "l"  */
@@ -84,13 +84,12 @@ struct matrixVector*  matrixVectorMultiply(char* file1 , char* file2){
   
     //double* result;
     res->A = malloc( m1->nrows * sizeof(double));
-    
+    #pragma omp parallel for
     for(int i=0;i < m1->nrows;i++){
-        double result1 = 0;
+         res->A[i] = 0;
         for(int j = 0;j <m2-> nrows ;j++){
-           result1+=m1->A[i*m1->ncolumns+j]*m2->A[j]; 
+           res->A[i]+=m1->A[i*m1->ncolumns+j]*m2->A[j]; 
         }
-       res->A[i] = result1;
       // printf("%lf\n", res->A[i]);
     }
     res->nrows = m1->nrows;

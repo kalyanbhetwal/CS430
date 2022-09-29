@@ -1,6 +1,7 @@
 //
 // Created by Kalyan on 9/12/22.
 //
+#include <omp.h>
 
 #ifndef PA1_MATRIX_VECTOR_H
 #define PA1_MATRIX_VECTOR_H
