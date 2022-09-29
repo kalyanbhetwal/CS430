@@ -32,11 +32,11 @@ TEST(TESTleibniz, myTest3)
 } 
 
 
-// TEST(TESTleibniz, myTest4)
-// {   
-//     double a  = get_pi(3);
-//     EXPECT_NE(a, 2.0); 
-// } 
+TEST(TESTleibniz, myTest4)
+{   
+    double a  = get_pi(3);
+    EXPECT_NE(a, 2.0); 
+} 
 
 TEST(TESTMontecarlo, myTest4)
 {   
