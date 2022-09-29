@@ -31,13 +31,6 @@ TEST(TESTleibniz, myTest3)
     EXPECT_NEAR(a, 3.142,0.000001); 
 } 
 
-
-TEST(TESTleibniz, myTest4)
-{   
-    double a  = get_pi(3);
-    EXPECT_NE(a, 2.0); 
-} 
-
 TEST(TESTMontecarlo, myTest4)
 {   
     double a  = monteCarlo(10000);

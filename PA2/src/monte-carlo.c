@@ -54,7 +54,7 @@ float monteCarlo(long long maxIterations) {
         #pragma omp single
             printf("Number of threads = %d\n", omp_get_num_threads());
 		// init seed for thread
-		int seed = time(0);
+		unsigned int seed = time(0);
 		rand_r(&seed);
         float radius = 3.0f;
         #pragma omp for reduction(+:hits)

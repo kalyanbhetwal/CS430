@@ -80,6 +80,10 @@ struct matrixMatrix*  matrixMultiply(char* file1 , char* file2){
   
     //double* result;
     res->A = malloc( m1->nrows*m2->ncolumns * sizeof(double));
+
+    double start; 
+    double end; 
+    start = omp_get_wtime(); 
     #pragma omp parallel for
     for(int i=0; i < m1->nrows;i++){
         for(int j=0; j< m2->ncolumns ;j++){
@@ -92,6 +96,8 @@ struct matrixMatrix*  matrixMultiply(char* file1 , char* file2){
         } 
      }
     }
+    end = omp_get_wtime(); 
+    printf("Work took %f seconds\n", end - start);
     res->nrows = m1->nrows;
     res->ncolumns = m2->ncolumns;
     return res;
