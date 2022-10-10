@@ -1,5 +1,4 @@
 #include "../include/fibonacci.h"
-#include "../lib/mmio.h"
 
 int main(int argc, char *argv[] ) {
     // get index for fibonacci number from Command Line
