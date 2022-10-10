@@ -19,7 +19,9 @@ double get_pi(int digits) {
 
     // PARALLEL COMPUTATION BEGINS HERE //
     
-    
+    double start; 
+    double end;
+    start = omp_get_wtime();
     double f = 0.0; // private serial variable
     double pf = 0.0; // private threaded variable
     // Calculate the partial sum of the Leibniz series up to the minimum number of terms
@@ -40,7 +42,8 @@ double get_pi(int digits) {
             f += pf;
         }
     }
-    
+    end = omp_get_wtime();
+    printf("Work took %f seconds\n", end - start);
     
     // PARALLEL COMPUTATION ENDS HERE //
     
