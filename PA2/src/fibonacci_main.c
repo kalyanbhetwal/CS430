@@ -20,11 +20,16 @@ int main(int argc, char *argv[] ) {
     
     unsigned long long fib;
     
+    double start; 
+    double end; 
+    start = omp_get_wtime();
     #pragma omp parallel shared(fib, index) 
     {
       #pragma omp single
       fib = fibonacci(index);
     }
-    
-    printf("%llu", fib);
+    end = omp_get_wtime();
+
+    printf("%llu\n", fib);
+    printf("Work took %f seconds\n", end - start);
 }
