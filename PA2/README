@@ -1,7 +1,7 @@
 =================================
 README for PA2
 =================================
-For PA1, we wrote parallized version of 5 algorithms using openmp.
+For PA2, we wrote parallized version of 5 algorithms using openmp.
 We also created a build system and test suite that we should be able to use and/or build on in 
 future projects.
 
@@ -10,7 +10,7 @@ Contents of this README:
 I.   Getting The Source Code
 II.  Quick Start
          A. Building PA2
-III. Building PA1 from Source
+III. Building PA2 from Source
 IV.  Running Tests
 V.   Documentation
 VI.  Contact
@@ -18,7 +18,7 @@ VI.  Contact
 
 ====  I. Getting The Source Code ===================
 
-The PA1 library is being actively developed, and new functionalities
+The PA2 library is being actively developed, and new functionalities
 are being added. You can get the latest source code from this git repository:
 
     git clone https://github.com/kalyanbhetwal/CS430
@@ -28,10 +28,10 @@ are being added. You can get the latest source code from this git repository:
 
 ==== II. Quick Start ===============
 
-  A. Building PA1
-  B. Running Kernels for PA1
+  A. Building PA2
+  B. Running Kernels for PA2
   
----- A. Building PA1 ----------
+---- A. Building PA2 ----------
 
 If you want to do a quick build, first check that you have required packages
 installed (see Requirements section below), then run:
@@ -41,18 +41,18 @@ installed (see Requirements section below), then run:
     make monte-carlo_main 
     make matrix-vector_main 
     make matrix-matrix_main 
-    make pa1_test
+    make pa2_test
     
 ---- B. Running Kernels for PA2 ----------
 
 If you want to run the individual kernels please use the below commands:
-     ${PA1_HOME}/build/bin/fibonacci_main 10 
-     ${PA1_HOME}/build/bin/leibniz_main 5
-     ${PA1_HOME}/build/bin/monte-carlo_main 
-     ${PA1_HOME}/build/bin/matrix-vector_main var/test.mm var/testvec.mm  
-     ${PA1_HOME}/build/bin/matrix-matrix_main var/test.mm var/test2.mm 
+     ${PA2_HOME}/build/bin/fibonacci_main 10 
+     ${PA2_HOME}/build/bin/leibniz_main 5
+     ${PA2_HOME}/build/bin/monte-carlo_main 
+     ${PA2_HOME}/build/bin/matrix-vector_main var/test.mm var/testvec.mm  
+     ${PA2_HOME}/build/bin/matrix-matrix_main var/test.mm var/test2.mm 
 
-==== III. Building PA1 from Source =======================
+==== III. Building PA2 from Source =======================
 
     Build Command Sequence
         make
@@ -66,7 +66,7 @@ If you want to run the individual kernels please use the below commands:
        
     Build and Test without creating an install directory
         make
-        make pa1_test
+        make pa2_test
 
 
     Requirements
@@ -87,9 +87,9 @@ work or do not work for you.
 
 ==== IV. Running Tests =====
 
-The ${PA1_HOME}/bin/build/pa1_test binary can be executed to run the tests of
-the various components of PA1. Additionally, from the root of the
-distribution you can run 'make pa1_test' to run these same tests.
+The ${PA2_HOME}/bin/build/pa2_test binary can be executed to run the tests of
+the various components of PA2. Additionally, from the root of the
+distribution you can run 'make pa2_test' to run these same tests.
 
 The gtest framework is used for writing and running unit tests.  Information
 on gtest can be found at:
