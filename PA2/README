@@ -45,6 +45,8 @@ installed (see Requirements section below), then run:
     
 ---- B. Running Kernels for PA2 ----------
 
+Before running the kernels please set the enivironment variable by using export `OMP_NUM_THREADS`=<integer for number of threads>
+
 If you want to run the individual kernels please use the below commands:
      ${PA2_HOME}/build/bin/fibonacci_main 10 
      ${PA2_HOME}/build/bin/leibniz_main 5
