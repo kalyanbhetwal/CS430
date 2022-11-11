@@ -13,7 +13,7 @@ extern "C" {
 
 TEST(TESTleibniz, myTest3)
 {   
-    double a  = get_pi(3);
+    double a  = get_pi(100000);
     std::cout <<"the value of a is "<< a<<std::endl;
     EXPECT_NEAR(a, 3.142,0.1); 
 } 
