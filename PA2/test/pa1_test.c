@@ -27,8 +27,8 @@ TEST(TESTfibonacci, myTest2)
 
 TEST(TESTleibniz, myTest3)
 {   
-    double a  = get_pi(3);
-    EXPECT_NEAR(a, 3.142,0.000001); 
+    double a  = get_pi(100000000);
+    EXPECT_NEAR(a, 3.142,0.001); 
 } 
 
 TEST(TESTMontecarlo, myTest4)
@@ -36,8 +36,6 @@ TEST(TESTMontecarlo, myTest4)
     double a  = monteCarlo(10000);
     EXPECT_NEAR(a, 3.14,0.1); 
 } 
-
-
 
 TEST(TESTMatrixVector, myTest1)
 {   
