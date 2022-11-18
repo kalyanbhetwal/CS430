@@ -47,7 +47,7 @@ float square(float num)
  * @param maxIterations - Number of points to test
  * @return - Estimated value of pi
  */
-float monteCarlo(long long maxIterations)
+long long monteCarlo(long long maxIterations)
 {
     long long hits = 0;
     // init seed for thread
@@ -61,42 +61,34 @@ float monteCarlo(long long maxIterations)
             hits++;
         }
     }
-    return 4 * ((float)hits / (float)maxIterations);
+    return hits;
 }
 
 int main(int argc, char *argv[])
 {
-    int doneCounter;
     // init MPI
-    MPI_Init(NULL, NULL);
+    MPI_Init(&argc, &argv);
     int world_size;
     MPI_Comm_size(MPI_COMM_WORLD, &world_size);
     int world_rank;
     MPI_Comm_rank(MPI_COMM_WORLD, &world_rank);
     printf("Rank %d out of %d processors\n", world_rank, world_size);
+    MPI_Status status;
     if (world_rank == 0)
     {
-        doneCounter = 0;
-    }
-    // get start time
-    struct timeval start, end;
-    gettimeofday(&start, NULL);
-    float total = 0;
-    total = (total + monteCarlo(9999)) / 2;
-    doneCounter++;
-    if (world_rank == 0)
-    {
-        while (doneCounter < world_size)
+        long long totalHits = 0;
+        for (int i = 1; i < world_size; i++)
         {
-            sleep(0.01);
+            long long receivedHits;
+            MPI_Recv(&receivedHits, 1, MPI_LONG_LONG, MPI_ANY_SOURCE, MPI_ANY_TAG, MPI_COMM_WORLD, &status);
+            totalHits = totalHits + receivedHits;
         }
-
-        printf("%f\n", total);
-
-        gettimeofday(&end, NULL);
-        long int time_in_microseconds = ((end.tv_sec - start.tv_sec) * 1000000L + end.tv_usec) - start.tv_usec;
-        printf("Total time: %ld microseconds\n", time_in_microseconds);
-        printf("Or %ld milliseconds\n", time_in_microseconds / 1000);
+        printf("pi = %f\n", (float)(4 * ((float)totalHits / (float)strtol(argv[1], NULL, 10))));
+    }
+    else
+    {
+        long long hits = monteCarlo(strtol(argv[1], NULL, 10));
+        MPI_Send(&hits, 1, MPI_LONG_LONG, 0, 0, MPI_COMM_WORLD);
     }
     MPI_Finalize();
 }
