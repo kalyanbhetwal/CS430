@@ -42,7 +42,6 @@ float square(float num)
 /**
  * Perform a Monte Carlo estimation of the value of pi
  * @param maxIterations - Number of points to test
- * @param threads - Number of threads to use
  * @return - Estimated value of pi
  */
 float monteCarlo(long long maxIterations, int threads)
@@ -50,43 +49,43 @@ float monteCarlo(long long maxIterations, int threads)
     // get start time
     struct timeval start, end;
     gettimeofday(&start, NULL);
-    // long long hits = 0;
+    long long hits = 0;
     omp_set_num_threads(threads);
-    long long hits[threads];
-#pragma omp parallel
+    printf("Number of threads = %d\n", threads);
+    // init seed for thread
+    int seed = time(0);
+    rand_r(&seed);
+    float radius = 3.0f;
+    float sqRad = square(radius);
+#pragma omp parallel for reduction(+: hits)
+    for (long long iterationsLeft = maxIterations; iterationsLeft > 0; iterationsLeft--)
     {
-        int thread_num = omp_get_thread_num();
-        #pragma omp single
-            printf("Number of threads = %d\n", omp_get_num_threads());
-        hits[thread_num] = 0;
-        // init seed for thread
-        unsigned int seed = time(0) ^ (unsigned int)thread_num;
-        float radius = 10000.0f;
-        long long limit = maxIterations / threads;
-        for (long long iterationsLeft = limit; iterationsLeft > 0; iterationsLeft--)
+        if (square(getRand(radius)) + square(getRand(radius)) <= sqRad)
         {
-            float rand_1 = (float)(((int)rand_r(&seed) % (int)(radius * 100)) / (float)100);
-            float rand_2 = (float)(((int)rand_r(&seed) % (int)(radius * 100)) / (float)100);
-            if (rand_1 * rand_1 + rand_2 * rand_2 <= radius * radius)
-            {
-                hits[thread_num]++;
-            }
+            hits++;
         }
     }
-    float total = 0;
-    for (int i = 0; i < threads; i++)
-    {
-        total = total + hits[i];
-    }
     gettimeofday(&end, NULL);
-    // time_t elapsed_time = end.tv_usec - start.tv_usec;
+    time_t elapsed_time = end.tv_usec - start.tv_usec;
     long int time_in_microseconds = ((end.tv_sec - start.tv_sec) * 1000000L + end.tv_usec) - start.tv_usec;
     printf("Total time: %ld microseconds\n", time_in_microseconds);
     printf("Or %ld milliseconds\n", time_in_microseconds / 1000);
-    return 4 * (total / (float)maxIterations);
+    return 4 * ((float)hits / (float)maxIterations);
 }
 
 int main(int argc, char *argv[])
 {
-    printf("pi = %f\n", monteCarlo(20000000000, 28));
+    // // int threads[] = {1, 2, 4, 6, 8, 12, 16, 20, 24, 28};
+    // int threads[] = {1, 2, 4, 6, 8, 12};
+    // // long long iterations[] = {99999999, 9999999999, 999999999999};
+    // long long iterations[] = {9999999999};
+    // for (int t = 0; t < sizeof(threads) / sizeof(int); t++)
+    //     for (int i = 0; i < sizeof(iterations) / sizeof(long long); i++)
+    //     {
+    //         printf("\n\nIterations: %lld\nThreads: %d\n", iterations[i], threads[t]);
+    //         printf("pi = %f\n", monteCarlo(iterations[i], threads[t]));
+    //     }
+    char *e;
+    printf("\n\nIterations: %lld\nThreads: %d\n", strtoll(argv[2], &e, 0), atoi(argv[1]));
+    printf("pi = %f\n", monteCarlo(strtoll(argv[2], &e, 0), atoi(argv[1])));
 }

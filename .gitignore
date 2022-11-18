@@ -3,3 +3,4 @@
 PA1/build/
 PA2/build/
 .vscode
+*.o
