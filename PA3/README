@@ -1,7 +1,7 @@
 =================================
-README for PA2
+README for PA3
 =================================
-For PA2, we wrote parallized version of 5 algorithms using openmp.
+For PA3, we wrote parallized version of 4 algorithms using openmp.
 We also created a build system and test suite that we should be able to use and/or build on in 
 future projects.
 
@@ -9,7 +9,7 @@ Contents of this README:
 
 I.   Getting The Source Code
 II.  Quick Start
-         A. Building PA2
+         A. Building PA3
 III. Building PA2 from Source
 IV.  Running Tests
 V.   Documentation
@@ -28,33 +28,31 @@ are being added. You can get the latest source code from this git repository:
 
 ==== II. Quick Start ===============
 
-  A. Building PA2
-  B. Running Kernels for PA2
+  A. Building PA3
+  B. Running Kernels for PA3
   
----- A. Building PA2 ----------
+---- A. Building PA3 ----------
 
 If you want to do a quick build, first check that you have required packages
 installed (see Requirements section below), then run:
     make
-    make fibonacci_main 
     make leibniz_main 
     make monte-carlo_main 
     make matrix-vector_main 
     make matrix-matrix_main 
-    make pa2_test
+    make pa3_test
     
----- B. Running Kernels for PA2 ----------
+---- B. Running Kernels for PA3 ----------
 
 Before running the kernels please set the enivironment variable by using export OMP_NUM_THREADS=<integer for number of threads>
 
 If you want to run the individual kernels please use the below commands:
-     ${PA2_HOME}/build/bin/fibonacci_main 10 
-     ${PA2_HOME}/build/bin/leibniz_main 5
-     ${PA2_HOME}/build/bin/monte-carlo_main 
-     ${PA2_HOME}/build/bin/matrix-vector_main var/test.mm var/testvec.mm  
-     ${PA2_HOME}/build/bin/matrix-matrix_main var/test.mm var/test2.mm 
+     ${PA3_HOME}/build/bin/leibniz_main 5
+     ${PA3_HOME}/build/bin/monte-carlo_main 
+     ${PA3_HOME}/build/bin/matrix-vector_main var/test.mm var/testvec.mm  
+     ${PA3_HOME}/build/bin/matrix-matrix_main var/test.mm var/test2.mm 
 
-==== III. Building PA2 from Source =======================
+==== III. Building PA3 from Source =======================
 
     Build Command Sequence
         make
@@ -68,7 +66,7 @@ If you want to run the individual kernels please use the below commands:
        
     Build and Test without creating an install directory
         make
-        make pa2_test
+        make pa3_test
 
 
     Requirements
@@ -95,9 +93,9 @@ export OMP_NUM_THREADS= <number of threads to use>
 
 ==== IV. Running Tests =====
 
-The ${PA2_HOME}/bin/build/pa2_test binary can be executed to run the tests of
-the various components of PA2. Additionally, from the root of the
-distribution you can run 'make pa2_test' to run these same tests.
+The ${PA3_HOME}/bin/build/pa3_test binary can be executed to run the tests of
+the various components of PA3. Additionally, from the root of the
+distribution you can run 'make pa3_test' to run these same tests.
 
 The gtest framework is used for writing and running unit tests.  Information
 on gtest can be found at:
@@ -130,13 +128,6 @@ The Matrix Vector Multiply kernel takes a matrix and vector as input and multipl
 
 Matrix-Matrix Multiply:
 The Matrix Matrix Multiply kernel takes two matrix as input and multiplies them.
-
-
-Fibonacci Numbers:
-The Fibonacci program computes the n-th Fibonacci Number using a recursive function
-which is based on the defined recursive relation F(n) = F(n-1) + F(n-2) if n > 1, 
-F(1) = 1, F(0) = 0. It can be shown that the Fibonacci Numbers grow exponentially, so
-F(n) can be reasonably be computed only for rather small n (say n < 94). 
 
 
 ==== VI. Contact =====
