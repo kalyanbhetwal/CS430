@@ -1,0 +1,99 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <mpi.h>
+#include "../include/matrix-matrix.h"
+
+int main(int argc, char *argv[]){
+    if (argc < 3)
+	{
+		fprintf(stderr, "Usage: %s [martix-market-filename]\n", argv[0]);
+		exit(1);
+	}
+
+  int myrank, size,i,j,k;
+  int tag = 999;		/* any value will do */
+  int SIZE;
+  struct matrixMatrix* res;
+  res = malloc(sizeof(struct matrixMatrix));
+  struct matrixMatrix* m1;
+  m1 = malloc( sizeof(struct matrixMatrix));
+  //m1 = readMatrix(file1);
+  struct matrixMatrix* m2;
+  m2 = malloc( sizeof(struct matrixMatrix));
+  //m2 = readTransposeMatrix(file2);
+
+  MPI_Init (&argc, &argv);
+  MPI_Comm_rank(MPI_COMM_WORLD, &myrank);	/* who am i */
+  MPI_Comm_size(MPI_COMM_WORLD, &size); /* number of processors */
+
+
+  /* Process 0 fills the input matrices and broadcasts them to the rest */
+  /* (actually, only the relevant stripe of A is sent to each process) */
+
+  if (myrank==0) {
+    m1 = readMatrix(argv[1]);
+    m2 = readTransposeMatrix(argv[2]);
+   
+  }
+ SIZE = m1->nrows;
+  /* impose that SIZE is divisible by number of processor. By using the vector versions, */
+  /* (MPI_Gatherv and MPI_Scatterv) it is easy to drop this restriction. */
+
+  if (SIZE%size!=0) {
+    if (myrank==0) printf("Matrix size not divisible by number of processors\n");
+    MPI_Finalize();
+    return 0;
+  }
+  
+   double m11[m1->nrows];
+   double res11[m1->nrows];
+
+         //double* result;
+    res->A = malloc( m1->nrows*m2->ncolumns * sizeof(double));
+
+    //scatter rows of first matrix to different processes     
+    MPI_Scatter(m1->A, SIZE*SIZE/size, MPI_DOUBLE, m11, SIZE*SIZE/size, MPI_DOUBLE,0,MPI_COMM_WORLD);
+
+    //broadcast second matrix to all processes
+    MPI_Bcast(m2->A, SIZE*SIZE, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+
+    MPI_Barrier(MPI_COMM_WORLD);
+
+    for( i=0; i < m1->ncolumns ;i++){
+        for( j=0; j< m2->ncolumns ;j++){
+            
+        res11[i]=0;
+        for( k = 0;k <m1-> nrows ;k++){
+           res11[i]+=m1->A[i*m1->ncolumns+k]*m2->A[j*m2->ncolumns+k];   
+        } 
+     }
+    } 
+
+    MPI_Gather(res11, SIZE*SIZE/size, MPI_DOUBLE, res->A, SIZE*SIZE/size, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+
+    MPI_Barrier(MPI_COMM_WORLD);        
+    MPI_Finalize();
+
+//   MPI_Bcast (m2->A, SIZE*SIZE, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+//   MPI_Scatter (m1->A, SIZE*SIZE/size, MPI_DOUBLE, m1->A[from], SIZE*SIZE/MPI_DOUBLE, MPI_INT, 0, MPI_COMM_WORLD);
+
+//   printf("computing slice %d (from row %d to %d)\n", myrank, from, to-1);
+//     for( i=from; i < to ;i++){
+//         for( j=0; j< m2->ncolumns ;j++){
+            
+//         res->A[i*m2->ncolumns+j]=0;
+//         for( k = 0;k <m1-> nrows ;k++){
+//            res->A[i*m2->ncolumns+j]+=m1->A[i*m1->ncolumns+k]*m2->A[j*m2->ncolumns+k];   
+//         } 
+//      }
+//     } 
+//   MPI_Gather (res->A[from], SIZE*SIZE/size, MPI_DOUBLE, res->A, SIZE*SIZE/size, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+//   if (myrank==0) {
+// //print
+//   }
+
+//   MPI_Finalize();
+//   return 0;
+
+
+}

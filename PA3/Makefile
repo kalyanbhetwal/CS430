@@ -1,4 +1,4 @@
-CC=gcc -Wall -Wextra -fopenmp
+CC=mpicc -Wall -Wextra -std=gnu99
 CFLAGS=-I.
 
 BUILD_DIR := build
