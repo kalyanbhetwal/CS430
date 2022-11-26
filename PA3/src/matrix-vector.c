@@ -66,38 +66,3 @@ struct matrixVector* readMatrixVector(char* file1)
 
 
 }
-
-struct matrixVector*  matrixVectorMultiply(char* file1 , char* file2){
-
-    struct matrixVector* res;
-    res = malloc(sizeof(struct matrixVector));
-    struct matrixVector* m1;
-    m1 = malloc( sizeof(struct matrixVector));
-    m1 = readMatrixVector(file1);
-    struct matrixVector* m2;
-    m2 = malloc( sizeof(struct matrixVector));
-    m2 = readMatrixVector(file2);
-
-      if ( m1->ncolumns!=m2->nrows ){
-          printf(" Can't Multiply; input1 colums must be equal to input2 rows ");
-    }
-  
-    //double* result;
-    res->A = malloc( m1->nrows * sizeof(double));
-    double start; 
-    double end; 
-    start = omp_get_wtime(); 
-    #pragma omp parallel for
-    for(int i=0;i < m1->nrows;i++){
-         res->A[i] = 0;
-        for(int j = 0;j <m2-> nrows ;j++){
-           res->A[i]+=m1->A[i*m1->ncolumns+j]*m2->A[j]; 
-        }
-      // printf("%lf\n", res->A[i]);
-    }
-    end = omp_get_wtime(); 
-    printf("Work took %f seconds\n", end - start);
-    res->nrows = m1->nrows;
-    res->ncolumns = 1;
-    return res;
-}

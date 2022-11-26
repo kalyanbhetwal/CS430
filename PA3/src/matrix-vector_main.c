@@ -5,21 +5,22 @@
 #include <stdlib.h>
 #include <stddef.h>
 #include "mpi.h"
-#include "../include/matrix-matrix.h"
+#include "../include/matrix-vector.h"
 
 
 int main(int argc, char *argv[])
 {
     int i, j,rank, size;
-    struct matrixMatrix* res;
-    res = malloc(sizeof(struct matrixMatrix));
-    struct matrixMatrix* m1;
-    m1 = malloc( sizeof(struct matrixMatrix));
+    struct matrixVector* res;
+    res = malloc(sizeof(struct matrixVector));
+    struct matrixVector* m1;
+    m1 = malloc( sizeof(struct matrixVector));
   //m1 = readMatrix(file1);
-    struct matrixMatrix* m2;
-    m2 = malloc( sizeof(struct matrixMatrix));
-    m1 = readMatrix(argv[1]);
-    m2 = readTransposeMatrix(argv[2]);
+    struct matrixVector* m2;
+    m2 = malloc( sizeof(struct matrixVector));
+
+    m1 = readMatrixVector(argv[1]);
+    m2 = readMatrixVector(argv[2]);
     struct timeval st, et;
 
     MPI_Init(&argc, &argv);
@@ -35,22 +36,25 @@ int main(int argc, char *argv[])
     MPI_Scatter(m1->A, N*N/size, MPI_DOUBLE, aa, N*N/size, MPI_DOUBLE,0,MPI_COMM_WORLD);
 
     //broadcast second matrix to all processes
-    MPI_Bcast(m2->A, N*N, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+    MPI_Bcast(m2->A, N, MPI_DOUBLE, 0, MPI_COMM_WORLD);
 
     MPI_Barrier(MPI_COMM_WORLD);
      gettimeofday(&st,NULL);  
 
-  for( i=0; i < m1->ncolumns ;i++){
+  for( i=0; i < m1->ncolumns/size ;i++){
         cc[i]=0; 
-        for( j=0; j< m2->ncolumns ;j++){  
-               cc[i]= cc[i]+ aa[j]*m2->A[i*m2->ncolumns+j];   
+        for( j=0; j< m2->nrows ;j++){  
+               cc[i]= cc[i]+ aa[j]* m2->A[j];   
+              // printf("aa  %d;; rank %d  data2 %f  result %f\n",i*m1->ncolumns+j,rank,  m1->A[i*m1->ncolumns+j], cc[i]);
      }
+    printf("the value of cc %f\n",cc[i]);
+    printf("---------------------\n");
     } 
 
-    MPI_Gather(cc, N*N/size, MPI_DOUBLE, res->A, N*N/size, MPI_DOUBLE, 0, MPI_COMM_WORLD);
+    MPI_Gather(cc, N/size, MPI_DOUBLE, res->A, N/size, MPI_DOUBLE, 0, MPI_COMM_WORLD);
     MPI_Barrier(MPI_COMM_WORLD);        
     MPI_Finalize();
     gettimeofday(&et,NULL);
     int elapsed = ((et.tv_sec - st.tv_sec) * 1000000) + (et.tv_usec - st.tv_usec);
-    printf("Elasped time for Matrix matrix=%d ms\n",elapsed); 
+    printf("Elasped time for Matrix vector=%d ms\n",elapsed); 
 }
