@@ -1,6 +1,6 @@
 CC=mpicc -Wall -Wextra -std=gnu99
 CFLAGS=-I.
-
+CXX=mpicxx
 BUILD_DIR := build
 OBJ_DIR := build/src
 OBJ_TEST_DIR := $(BUILD_DIR)/test/src
@@ -13,7 +13,7 @@ GBUILD :=  build/bin/gtest
 CPPFLAGS += -isystem $(GTEST_DIR)/include -isystem $(GMOCK_DIR)/include
 
 # Flags passed to the C++ compiler.
-CXXFLAGS += -g -Wall -Wextra -pthread -std=c++11 -fopenmp
+CXXFLAGS += -g -Wall -Wextra -pthread -std=c++11
 
 # Google Test libraries
 GTEST_LIBS = $(GBUILD)/libgtest.a  $(GBUILD)/libgtest_main.a
