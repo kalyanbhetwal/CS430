@@ -10,5 +10,5 @@ module load slurm
 module load mpich/ge/gcc/64/3.2.1
 module load gcc8/8.4.0
 
-make matrix-vector_main
-mpirun -np 3 ./build/bin/matrix-vector_main var/test.mm var/testvec.mm
+make matrix-matrix-cannon
+mpirun -np 16 ./build/bin/matrix-matrix-cannon var/test.mm var/test2.mm

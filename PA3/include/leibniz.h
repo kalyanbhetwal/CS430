@@ -3,4 +3,4 @@
 #include <omp.h>
 #include <string.h>
 
-double get_pi(int digits);
+double get_pi(int term, int lower, int upper);

@@ -26,7 +26,7 @@ GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
 HEADERS = include/*.h
 
 TESTS := pa1_test
-all :leibniz_main monte-carlo_main matrix-vector_main matrix-matrix_main $(GTEST_LIBS) ${TESTS}
+all :leibniz_main monte-carlo_main matrix-vector_main matrix-matrix_main matrix-matrix-cannon $(GTEST_LIBS) ${TESTS}
 
 
 $(OBJ_DIR)/%.o: src/%.c
@@ -66,6 +66,14 @@ $(OBJ_DIR)/%.o: src/matrix-matrix.c include/matrix-matrix.h
 	$(CC) -c $< -o $
 
 matrix-matrix_main: lib/mmio.o $(OBJ_DIR)/matrix-matrix.o $(OBJ_DIR)/matrix-matrix_main.o
+	mkdir -p build/bin
+	$(CC) $^ -o build/bin/$@
+
+$(OBJ_DIR)/%.o: src/matrix-matrix-cannon.c
+	mkdir -p $(@D)
+	$(CC) -c $< -o $
+
+matrix-matrix-cannon: lib/mmio.o $(OBJ_DIR)/matrix-matrix.o $(OBJ_DIR)/matrix-matrix-cannon.o
 	mkdir -p build/bin
 	$(CC) $^ -o build/bin/$@
 clean:
