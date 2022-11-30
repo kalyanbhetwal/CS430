@@ -10,7 +10,7 @@ Contents of this README:
 I.   Getting The Source Code
 II.  Quick Start
          A. Building PA3
-III. Building PA2 from Source
+III. Building PA3 from Source
 IV.  Running Tests
 V.   Documentation
 VI.  Contact
@@ -34,23 +34,30 @@ are being added. You can get the latest source code from this git repository:
 ---- A. Building PA3 ----------
 
 If you want to do a quick build, first check that you have required packages
-installed (see Requirements section below), then run:
+installed (see Requirements section below). Also please load appropriate modules with commands:
+         
+     module load openmpi
+     module load mpich/ge/gcc/64/3.2.1
+     module load gcc8/8.4.0
+
+Then please run:
+
     make
     make leibniz_main 
     make monte-carlo_main 
     make matrix-vector_main 
     make matrix-matrix_main 
+    make matrix-matrix-cannon
     make pa3_test
     
 ---- B. Running Kernels for PA3 ----------
-
-Before running the kernels please set the enivironment variable by using export OMP_NUM_THREADS=<integer for number of threads>
 
 If you want to run the individual kernels please use the below commands:
      ${PA3_HOME}/build/bin/leibniz_main 5
      ${PA3_HOME}/build/bin/monte-carlo_main 
      ${PA3_HOME}/build/bin/matrix-vector_main var/test.mm var/testvec.mm  
      ${PA3_HOME}/build/bin/matrix-matrix_main var/test.mm var/test2.mm 
+     ${PA3_HOME}/build/bin/matrix-matrix-cannnon var/test.mm var/test2.mm 
 
 ==== III. Building PA3 from Source =======================
 
@@ -58,11 +65,11 @@ If you want to run the individual kernels please use the below commands:
         make
         make all
     Build individual Kernels
-         make fibonacci_main 
          make leibniz_main 
          make monte-carlo_main 
          make matrix-matrix_main  
          make matrix-vector_main 
+         make matrix-matrix-cannon
        
     Build and Test without creating an install directory
         make
@@ -83,13 +90,6 @@ If you want to run the individual kernels please use the below commands:
 Please notify us if you find that other versions of these tools that
 work or do not work for you.
 
-Running in Parallel:
-
-Before executing the program, in your bash/shell script or terminal run:
-
-export OMP_NUM_THREADS= <number of threads to use>
-
-... (Tbd?)
 
 ==== IV. Running Tests =====
 
@@ -127,7 +127,9 @@ Matrix-Vector Multiply:
 The Matrix Vector Multiply kernel takes a matrix and vector as input and multiplies them.
 
 Matrix-Matrix Multiply:
-The Matrix Matrix Multiply kernel takes two matrix as input and multiplies them.
+The Matrix Matrix Multiply kernel takes two matrix as input and multiplies them. There are 
+two implementations for matrix matrix multiply. One is general implementation and other is 
+using the Cannon's alogrithms. 
 
 
 ==== VI. Contact =====
