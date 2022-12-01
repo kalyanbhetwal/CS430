@@ -15,12 +15,12 @@ int main(int argc, char *argv[])
     res = malloc(sizeof(struct matrixMatrix));
     struct matrixMatrix* m1;
     m1 = malloc( sizeof(struct matrixMatrix));
-  //m1 = readMatrix(file1);
+
     struct matrixMatrix* m2;
     m2 = malloc( sizeof(struct matrixMatrix));
-      m1 = readMatrix(argv[1]);
-      m2 = readTransposeMatrix(argv[2]);
-     N = m1->nrows;
+    m1 = readMatrix(argv[1]);
+    m2 = readTransposeMatrix(argv[2]);
+    N = m1->nrows;
 
     struct timeval st, et;
   
