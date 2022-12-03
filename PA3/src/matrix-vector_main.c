@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include <math.h>
 #include <sys/time.h>
 #include <stdlib.h>
@@ -72,6 +73,22 @@ int main(int argc, char *argv[])
     int elapsed = ((et.tv_sec - st.tv_sec) * 1000000) + (et.tv_usec - st.tv_usec);
     if(rank==0){
       printf("Elasped time for Matrix vector=%d ms\n",elapsed); 
+
+      char file1[2048];
+      getcwd(file1,2048);
+      strcat(file1,"/var/mvresult.mm");
+      FILE *stream_out;
+      stream_out = fopen(file1,"w");
+    
+      if(stream_out == NULL){
+        printf("Error: unable to open file: %s\n", file1);
+        exit(0);
+      }
+      fprintf(stream_out,"%s","%%MatrixMarket matrix array real general\n%\n");
+      fprintf(stream_out,"%d %d\n",N,1);
+      for(int i = 0; i<N; i++){
+        fprintf(stream_out, "%f\n", res->A[i]);
+      }
     }
     free(aa);
     free(cc);

@@ -2,6 +2,7 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "../include/matrix-matrix.h"
 
 int main(int argc, char *argv[]) {
@@ -204,16 +205,27 @@ int main(int argc, char *argv[]) {
 
 	if(rank==0){
     printf("%lf\n", max_time);
+    char file1[2048];
+    getcwd(file1,2048);
+    strcat(file1,"/var/cannonresult.mm");
+    FILE *stream_out;
+    stream_out = fopen(file1,"w");
+  
+    if(stream_out == NULL){
+      printf("Error: unable to open file: %s\n", file1);
+      exit(0);
+    }
+    fprintf(stream_out,"%s","%%MatrixMarket matrix array real general\n%\n");
+    fprintf(stream_out,"%d %d\n",n, n);
+    for(int i = 0; i<n*n; i++){
+      fprintf(stream_out, "%f\n", C->A[i]);
+    }
 
     // Print result
     /*
     printf("\nC: \n");
     printMatrix(C, n, n, n);
     */
-
-    // Write to output file
-   // char* output_filename = argv[2];
-    //writeOutput(output_filename, C, n);
   }
 
   // Clean up 
