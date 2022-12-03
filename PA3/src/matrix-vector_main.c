@@ -9,6 +9,11 @@
 
 int main(int argc, char *argv[])
 {
+  if (argc < 3)
+	{
+		fprintf(stderr, "Usage: %s [martix-market-filename]\n", argv[0]);
+		exit(1);
+	}
     int i, j,rank, size,N;
     struct matrixVector* res;
     res = malloc(sizeof(struct matrixVector));

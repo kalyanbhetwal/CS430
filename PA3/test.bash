@@ -11,8 +11,10 @@ module load mpich/ge/gcc/64/3.2.1
 module load gcc8/8.4.0
 
 make matrix-matrix-cannon
-#mpirun -np 4 ./build/bin/matrix-matrix-cannon  ./benchmarks/mm/small_matrix43.mm ./benchmarks/mm/small_vector43.mm
+#mpirun -np 16 ./build/bin/matrix-matrix-cannon  ./benchmarks/mm/small_matrix43.mm ./benchmarks/mm/small_vector43.mm
+mpirun -np 9 ./build/bin/matrix-matrix-cannon  ./benchmarks/mm/medium_matrix43.mm ./benchmarks/mm/medium_vector43.mm
+#mpirun -np 4 ./build/bin/matrix-matrix-cannon  ./var/test.mm ./var/test2.mm
 
-#mpirun -np 2 ./build/bin/matrix-matrix-cannon  ./var/test.mm ./var/test2.mm
+#mpirun -np 25 ./build/bin/matrix-matrix-cannon 
 
-mpirun -np 25 ./build/bin/matrix-matrix-cannon 
+mpirun -np 25 ./build/bin/matrix-matrix-cannon ./benchmarks/mm/large_matrix43.mm ./benchmarks/mm/large_vector43.mm

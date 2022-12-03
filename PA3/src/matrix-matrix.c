@@ -112,8 +112,5 @@ struct matrixMatrix* readTransposeMatrix(char* file1)
             fscanf(f, "%lf\n", &(m1->A)[j*m1->nrows+i]);
         }
     }
-    // int tmp = m1->ncolumns;
-    // m1->ncolumns = m1->nrows;
-    // m1->nrows = tmp ; 
     return m1;
 }
