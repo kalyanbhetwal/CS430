@@ -69,26 +69,26 @@ int main(int argc, char *argv[])
     MPI_Gather(cc, N/size, MPI_DOUBLE, res->A, N/size, MPI_DOUBLE, 0, MPI_COMM_WORLD);
     MPI_Barrier(MPI_COMM_WORLD);        
     MPI_Finalize();
-    gettimeofday(&et,NULL);
-    int elapsed = ((et.tv_sec - st.tv_sec) * 1000000) + (et.tv_usec - st.tv_usec);
     if(rank==0){
+      gettimeofday(&et,NULL);
+      int elapsed = ((et.tv_sec - st.tv_sec) * 1000000) + (et.tv_usec - st.tv_usec);
       printf("Elasped time for Matrix vector=%d ms\n",elapsed); 
 
-      char file1[2048];
-      getcwd(file1,2048);
-      strcat(file1,"/var/mvresult.mm");
-      FILE *stream_out;
-      stream_out = fopen(file1,"w");
+    //   char file1[2048];
+    //   getcwd(file1,2048);
+    //   strcat(file1,"/var/mvresult.mm");
+    //   FILE *stream_out;
+    //   stream_out = fopen(file1,"w");
     
-      if(stream_out == NULL){
-        printf("Error: unable to open file: %s\n", file1);
-        exit(0);
-      }
-      fprintf(stream_out,"%s","%%MatrixMarket matrix array real general\n%\n");
-      fprintf(stream_out,"%d %d\n",N,1);
-      for(int i = 0; i<N; i++){
-        fprintf(stream_out, "%f\n", res->A[i]);
-      }
+    //   if(stream_out == NULL){
+    //     printf("Error: unable to open file: %s\n", file1);
+    //     exit(0);
+    //   }
+    //   fprintf(stream_out,"%s","%%MatrixMarket matrix array real general\n%\n");
+    //   fprintf(stream_out,"%d %d\n",N,1);
+    //   for(int i = 0; i<N; i++){
+    //     fprintf(stream_out, "%f\n", res->A[i]);
+    //   }
     }
     free(aa);
     free(cc);

@@ -13,8 +13,8 @@ module load anaconda/anaconda3/5.1.0
 module load mpich/ge/gcc/64/3.2.1
 make matrix-vector_main 
 
-sizes=(3240)
-threads=(1 2 4 6 8 10 12 16 20 24)
+sizes=(3360)
+threads=(1 2 4 6 8 10 12 16 20 24 28)
 
 for i in "${sizes[@]}"
 do

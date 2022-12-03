@@ -14,19 +14,19 @@ module load mpich/ge/gcc/64/3.2.1
 
 make matrix-vector_main 
 
-sizes=(9600)
+sizes=(10080)
 
-threads=(1 2 4 6 8 10 12 16 20 24)
+threads=(1 2 4 6 8 10 12 16 20 24 28)
 
 for i in "${sizes[@]}"
 do
     echo "----------------------------------------------------"
     echo "Size of Output Vector: $i x 1"
     echo "----------------------------------------------------"
-    python3 generate_matrix.py -m1 ./benchmarks/mv/small_matrix43.mm -m2 ./benchmarks/mv/small_vector43.mm -o ./benchmarks/mv/small_output43.mm -s $i -v
+    python3 generate_matrix.py -m1 ./benchmarks/mv/large_matrix43.mm -m2 ./benchmarks/mv/large_vector43.mm -o ./benchmarks/mv/large_output43.mm -s $i -v
     for j in "${threads[@]}"
     do
         echo "Number of mpi processors: $j"
-        mpirun -np $j ./build/bin/matrix-vector_main ./benchmarks/mv/small_matrix43.mm ./benchmarks/mv/small_vector43.mm
+        mpirun -np $j ./build/bin/matrix-vector_main ./benchmarks/mv/large_matrix43.mm ./benchmarks/mv/large_vector43.mm
     done
 done
