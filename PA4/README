@@ -37,12 +37,24 @@ installed (see Requirements section below). Also please load appropriate modules
     module load cuda10.0
 
     nvcc -O3 -o mandelbrot mandelbrot.cu png_util.c -I. -lm -lpng
+    
+    OPENMP:
+    --------------------
+    Use the following command to compile
+    
+    gcc -fopenmp mandelbrot-openmp.c -o mandelbrot-cuda
+    
+
 
 ---- B. Running Kernels for PA4 ----------
      
      `sbatch cuda_job.bash` 
 
+     OPENMP:
+     --------------------
+     Before executing the program, in your bash/shell script or terminal run:
 
+     export OMP_NUM_THREADS= <number of threads to use>
 
 ==== III. Contact =====
 
