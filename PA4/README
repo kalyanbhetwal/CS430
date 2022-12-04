@@ -39,7 +39,8 @@ installed (see Requirements section below). Also please load appropriate modules
     nvcc -O3 -o mandelbrot mandelbrot.cu png_util.c -I. -lm -lpng
 
 ---- B. Running Kernels for PA4 ----------
-
+     
+     `sbatch cuda_job.bash` 
 
 
 
