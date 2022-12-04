@@ -1,7 +1,7 @@
 =================================
-README for PA3
+README for PA4
 =================================
-For PA3, we wrote parallized version of 4 algorithms using openmp.
+For PA4, we wrote parallelized version of mandelbrot using 
 We also created a build system and test suite that we should be able to use and/or build on in 
 future projects.
 
@@ -9,10 +9,8 @@ Contents of this README:
 
 I.   Getting The Source Code
 II.  Quick Start
-         A. Building PA3
-III. Building PA3 from Source
-IV.  Running Tests
-V.   Documentation
+         A. Building PA4
+         B. Running Kernels for PA4
 VI.  Contact
 
 
@@ -23,116 +21,29 @@ are being added. You can get the latest source code from this git repository:
 
     git clone https://github.com/kalyanbhetwal/CS430
     
- 
 
 
 ==== II. Quick Start ===============
 
-  A. Building PA3
-  B. Running Kernels for PA3
+  A. Building PA4
+  B. Running Kernels for PA4
   
----- A. Building PA3 ----------
+---- A. Building PA4 ----------
 
 If you want to do a quick build, first check that you have required packages
 installed (see Requirements section below). Also please load appropriate modules with commands:
          
-     module load openmpi
-     module load mpich/ge/gcc/64/3.2.1
-     module load gcc8/8.4.0
+    module load slurm
+    module load cuda10.0
 
-Then please run:
+    nvcc -O3 -o mandelbrot mandelbrot.cu png_util.c -I. -lm -lpng
 
-    make
-    make leibniz_main 
-    make monte-carlo_main 
-    make matrix-vector_main 
-    make matrix-matrix_main 
-    make matrix-matrix-cannon
-    make pa3_test
-    
----- B. Running Kernels for PA3 ----------
-
-If you want to run the individual kernels please use the below commands:
-     ${PA3_HOME}/build/bin/leibniz_main 5
-     ${PA3_HOME}/build/bin/monte-carlo_main 
-     ${PA3_HOME}/build/bin/matrix-vector_main var/test.mm var/testvec.mm  
-     ${PA3_HOME}/build/bin/matrix-matrix_main var/test.mm var/test2.mm 
-     ${PA3_HOME}/build/bin/matrix-matrix-cannnon var/test.mm var/test2.mm 
-
-==== III. Building PA3 from Source =======================
-
-    Build Command Sequence
-        make
-        make all
-    Build individual Kernels
-         make leibniz_main 
-         make monte-carlo_main 
-         make matrix-matrix_main  
-         make matrix-vector_main 
-         make matrix-matrix-cannon
-       
-    Build and Test without creating an install directory
-        make
-        make pa3_test
-
-
-    Requirements
-        * make: version 4.2.1 known to work
-
-        * automake: version 1.16.1 known to work
-
-        * C++ compiler, the below versions are known to work
-            Mac i686-apple-darwin10-g++-4.2.1,
-            GCC 4.6.3 20120306 (Red Hat 4.6.3-2)
+---- B. Running Kernels for PA4 ----------
 
 
 
-Please notify us if you find that other versions of these tools that
-work or do not work for you.
 
-
-==== IV. Running Tests =====
-
-The ${PA3_HOME}/bin/build/pa3_test binary can be executed to run the tests of
-the various components of PA3. Additionally, from the root of the
-distribution you can run 'make pa3_test' to run these same tests.
-
-The gtest framework is used for writing and running unit tests.  Information
-on gtest can be found at:
-
-    http://code.google.com/p/googletest/
-
-and introductory documentation is at:
-
-    http://code.google.com/p/googletest/wiki/V1_6_Primer
-
-==== V. Documentation =====
-
-
-PI: Leibniz's Series:
-The Leibniz program computes the constant PI to a given precision (number of
-decimal places) using the Leibniz formula for PI: PI = 4 - 4/3 + 4/5 - 4/7 + ...
-To compute PI accurately to n digits, you need at least 10^n terms, so only a 
-relatively small number of digits can be computed in a reasonable amount of time.
-
-PI: Monte Carlo:
-The Monte Carlo algorithm calculates PI by imagining a circle inside a square,
-where the diameter of the circle is the same as the side length of the square.
-N random points are randomly chosen within the square and checked if they land
-within the circle as well. Then, the ratio of points inside the circle to total
-points tested (N) is multiplied by 4. The result should be a close estimate of
-the value of PI, with the number being more accurate with a higher N.
-
-Matrix-Vector Multiply:
-The Matrix Vector Multiply kernel takes a matrix and vector as input and multiplies them.
-
-Matrix-Matrix Multiply:
-The Matrix Matrix Multiply kernel takes two matrix as input and multiplies them. There are 
-two implementations for matrix matrix multiply. One is general implementation and other is 
-using the Cannon's alogrithms. 
-
-
-==== VI. Contact =====
+==== III. Contact =====
 
 For more information please contact:
 
