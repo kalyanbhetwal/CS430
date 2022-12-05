@@ -13,9 +13,12 @@ Outcome of the Project:
 ## Contents of this README:
 
 I.   Getting The Source Code
+
 II.  Quick Start
          A. Building PA4
+         
          B. Running Kernels for PA4
+         
 III.  Contact
 
 ## I. Getting The Source Code
