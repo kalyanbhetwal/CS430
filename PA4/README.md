@@ -1,5 +1,5 @@
 =================================
-README for PA4
+## README for PA4
 =================================
 For PA4, we wrote parallelized version of mandelbrot using 
 We also created a build system and test suite that we should be able to use and/or build on in 
@@ -7,6 +7,7 @@ future projects.
 
 Outcome of the Project:
 
+![mandelbrot](https://user-images.githubusercontent.com/13769514/205765118-c781d854-0f21-401e-b531-4b8a32700be9.png)
 
 
 Contents of this README:
