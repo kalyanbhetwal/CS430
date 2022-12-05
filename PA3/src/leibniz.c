@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-double get_pi(int term, int lower, int upper) {
+double get_pi(int lower, int upper) {
     // compute PI to a given number of terms in the Leibniz series
 
     double pf = 0.0; // 
