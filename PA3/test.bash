@@ -11,10 +11,10 @@ module load slurm
 module load anaconda/anaconda3/5.1.0
 module load mpich/ge/gcc/64/3.2.1
 
-make matrix-matrix-cannon
+make matrix-matrix_main
 #mpirun -np 16 ./build/bin/matrix-matrix-cannon  ./benchmarks/mm/small_matrix43.mm ./benchmarks/mm/small_vector43.mm
 #mpirun -np 9 ./build/bin/matrix-matrix-cannon  ./benchmarks/mm/medium_matrix43.mm ./benchmarks/mm/medium_vector43.mm
-mpirun -np 4 ./build/bin/matrix-matrix-cannon  ./var/test.mm ./var/test2.mm
+mpirun -np 2 ./build/bin/matrix-matrix_main  ./var/test.mm ./var/test2.mm
 
 #mpirun -np 25 ./build/bin/matrix-matrix-cannon 
 

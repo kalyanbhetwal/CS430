@@ -40,8 +40,6 @@ int main(int argc, char *argv[]) {
       B = malloc( sizeof(struct matrixMatrix)); 
       C = malloc(sizeof(struct matrixMatrix));
 
-    // Read size of matrix
-    // fscanf(stream_in, "%d ", &n);
 
       A = readMatrix(argv[1]);
       B = readMatrix(argv[2]);
@@ -204,7 +202,7 @@ int main(int argc, char *argv[]) {
 	MPI_Reduce(&execution_time, &max_time, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD); 
 
 	if(rank==0){
-    printf("%lf\n", max_time);
+    printf("Elapsed time %lf\n", max_time);
     char file1[2048];
     getcwd(file1,2048);
     strcat(file1,"/var/cannonresult.mm");
@@ -221,11 +219,7 @@ int main(int argc, char *argv[]) {
       fprintf(stream_out, "%f\n", C->A[i]);
     }
 
-    // Print result
-    /*
-    printf("\nC: \n");
-    printMatrix(C, n, n, n);
-    */
+
   }
 
   // Clean up 

@@ -116,4 +116,5 @@ $(BUILD_DIR)/test/pa1_test.o : test/pa1_test.c ${HEADERS} $(GTEST_HEADERS)
 
 pa1_test : $(BUILD_DIR)/test/pa1_test.o $(GBUILD)/libgtest_main.a $(OBJ_TEST_DIR)/leibniz.o $(OBJ_TEST_DIR)/monte-carlo.o $(OBJ_TEST_DIR)/matrix-vector.o   $(OBJ_TEST_DIR)/matrix-matrix.o lib/mmio.o
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o build/bin/$@
+	./var/mv_test.sh
 	./build/bin/pa1_test

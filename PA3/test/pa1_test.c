@@ -9,7 +9,7 @@ extern "C" {
 #include "../include/matrix-matrix.h"
 }
 
-TEST(TESTCannon, myTestC){
+TEST(TESTCannon, myTestCannon){
     float array[9] = {90.0,100.0,110,120,202,228,254,280};
     char file1[2048];
     getcwd(file1,2048);

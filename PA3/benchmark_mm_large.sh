@@ -15,8 +15,8 @@ make matrix-matrix_main
 
 sizes=(4800)
 #threads=(1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28)
-#threads=(1 2 4 8 10 12 16 20 24)
-threads=(1)
+threads=(1 2 4 8 10 12 16 20 24)
+#threads=(1)
 
 
 for i in "${sizes[@]}"
@@ -24,7 +24,7 @@ do
     echo "----------------------------------------------------"
     echo "Size of Output Matrix: $i x $i"
     echo "----------------------------------------------------"
-    python3 generate_matrix.py -m1 ./benchmarks/mm/large_matrix43.mm -m2 ./benchmarks/mm/large_vector43.mm -o ./benchmarks/mm/large_output43.mm -s $i
+    #python3 generate_matrix.py -m1 ./benchmarks/mm/large_matrix43.mm -m2 ./benchmarks/mm/large_vector43.mm -o ./benchmarks/mm/large_output43.mm -s $i
     for j in "${threads[@]}"
     do
         echo "Number of mpi processors: $j"
