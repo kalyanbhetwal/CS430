@@ -71,7 +71,7 @@ int main(int argc, char** argv) {
         lower = 0;
         upper = N - split*(nproc-1);
         double total;
-        total = get_pi(N, lower, upper);
+        total = get_pi( lower, upper);
         
         double tmp;
         for (i = 1; i < nproc; i++) {
@@ -93,7 +93,7 @@ int main(int argc, char** argv) {
        
        MPI_Recv(&upper, 1, MPI_INT, 0, 0, MPI_COMM_WORLD, &status);
        MPI_Recv(&lower, 1, MPI_INT, 0, 1, MPI_COMM_WORLD, &status);
-       tmp = get_pi(NT, lower, upper);
+       tmp = get_pi( lower, upper);
        MPI_Send(&tmp, 1, MPI_DOUBLE, 0, 0, MPI_COMM_WORLD);
     }
     
