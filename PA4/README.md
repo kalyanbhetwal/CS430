@@ -15,6 +15,7 @@ Outcome of the Project:
 I.   Getting The Source Code
 
 II.  Quick Start
+
          A. Building PA4
          
          B. Running Kernels for PA4
