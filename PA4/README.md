@@ -31,6 +31,7 @@ are being added. You can get the latest source code from this git repository:
 
 
 ## II. Quick Start 
+
   A. Building PA4
   
   B. Running Kernels for PA4
