@@ -1,7 +1,7 @@
-=================================
+
 ## README for PA4
-=================================
-For PA4, we wrote parallelized version of mandelbrot using 
+
+For PA4, we wrote parallelized version of mandelbrot using cuda and openmp.
 We also created a build system and test suite that we should be able to use and/or build on in 
 future projects.
 
@@ -10,7 +10,7 @@ Outcome of the Project:
 ![mandelbrot](https://user-images.githubusercontent.com/13769514/205765118-c781d854-0f21-401e-b531-4b8a32700be9.png)
 
 
-Contents of this README:
+## Contents of this README:
 
 I.   Getting The Source Code
 II.  Quick Start
@@ -18,8 +18,7 @@ II.  Quick Start
          B. Running Kernels for PA4
 III.  Contact
 
-
-====  I. Getting The Source Code ===================
+## I. Getting The Source Code
 
 The PA2 library is being actively developed, and new functionalities
 are being added. You can get the latest source code from this git repository:
@@ -28,12 +27,11 @@ are being added. You can get the latest source code from this git repository:
     
 
 
-==== II. Quick Start ===============
-
+## II. Quick Start 
   A. Building PA4
   B. Running Kernels for PA4
   
----- A. Building PA4 ----------
+# A. Building PA4
 
 If you want to do a quick build, first check that you have required packages
 installed (see Requirements section below). Also please load appropriate modules with commands:
@@ -53,7 +51,7 @@ installed (see Requirements section below). Also please load appropriate modules
     
 
 
----- B. Running Kernels for PA4 ----------
+# B. Running Kernels for PA4
      
      CUDA:
      `sbatch cuda_job.bash` 
@@ -64,7 +62,7 @@ installed (see Requirements section below). Also please load appropriate modules
 
      export OMP_NUM_THREADS= <number of threads to use>
 
-==== III. Contact =====
+## III. Contact 
 
 For more information please contact:
 
