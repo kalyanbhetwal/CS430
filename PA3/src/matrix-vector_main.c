@@ -16,12 +16,9 @@ int main(int argc, char *argv[])
 		exit(1);
 	}
     int i, j,rank, size,N;
-    struct matrixVector* res;
+    struct matrixVector* res, *m1, *m2;
     res = malloc(sizeof(struct matrixVector));
-    struct matrixVector* m1;
     m1 = malloc( sizeof(struct matrixVector));
-  //m1 = readMatrix(file1);
-    struct matrixVector* m2;
     m2 = malloc( sizeof(struct matrixVector));
 
     m1 = readMatrixVector(argv[1]);
@@ -78,30 +75,30 @@ int main(int argc, char *argv[])
     if(rank==0){
        double end = MPI_Wtime(); /* only 1 process needs to do this */
         double time = end - start ;
-        printf ("Elapsed  time MV %d : time = % f \n" , rank , time ) ;
+        printf ("Elapsed  time  = %f\n", time ) ;
     }       
     MPI_Finalize();
-    //if(rank==0){
+    if(rank==0){
     //   gettimeofday(&et,NULL);
     //   int elapsed = ((et.tv_sec - st.tv_sec) * 1000000) + (et.tv_usec - st.tv_usec);
     //   printf("Elasped time for Matrix vector=%d ms\n",elapsed); 
 
-    //   char file1[2048];
-    //   getcwd(file1,2048);
-    //   strcat(file1,"/var/mvresult.mm");
-    //   FILE *stream_out;
-    //   stream_out = fopen(file1,"w");
+      char file1[2048];
+      getcwd(file1,2048);
+      strcat(file1,"/var/mvresult.mm");
+      FILE *stream_out;
+      stream_out = fopen(file1,"w");
     
-    //   if(stream_out == NULL){
-    //     printf("Error: unable to open file: %s\n", file1);
-    //     exit(0);
-    //   }
-    //   fprintf(stream_out,"%s","%%MatrixMarket matrix array real general\n%\n");
-    //   fprintf(stream_out,"%d %d\n",N,1);
-    //   for(int i = 0; i<N; i++){
-    //     fprintf(stream_out, "%f\n", res->A[i]);
-    //   }
-    // }
+      if(stream_out == NULL){
+        printf("Error: unable to open file: %s\n", file1);
+        exit(0);
+      }
+      fprintf(stream_out,"%s","%%MatrixMarket matrix array real general\n%\n");
+      fprintf(stream_out,"%d %d\n",N,1);
+      for(int i = 0; i<N; i++){
+        fprintf(stream_out, "%f\n", res->A[i]);
+      }
+    }
     free(aa);
     free(cc);
 }

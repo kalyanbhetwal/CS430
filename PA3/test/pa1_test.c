@@ -26,7 +26,7 @@ TEST(TESTMatrixVector, myTest1)
 {   
     struct matrixVector* result;
 
-    float array[3] = {14.000000 ,32.000000 ,50.000000};
+    float array[4] = {30.000000 ,70.000000 ,110.000000,150.00};
     char file1[2048];
     getcwd(file1,2048);
     strcat(file1,"/var/mvresult.mm");
