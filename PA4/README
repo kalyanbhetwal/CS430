@@ -40,7 +40,9 @@ installed (see Requirements section below). Also please load appropriate modules
          
     module load slurm
     module load cuda10.0
-
+    
+    CUDA:
+     
     nvcc -O3 -o mandelbrot mandelbrot.cu png_util.c -I. -lm -lpng
     
     OPENMP:
@@ -53,6 +55,7 @@ installed (see Requirements section below). Also please load appropriate modules
 
 ---- B. Running Kernels for PA4 ----------
      
+     CUDA:
      `sbatch cuda_job.bash` 
 
      OPENMP:
