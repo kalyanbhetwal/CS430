@@ -1,11 +1,15 @@
-#include <mpi.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+<<<<<<< HEAD
 #include <omp.h>
 #include "../include/leibniz.h"
 
+=======
+#include "mpi.h"
+#include "../include/leibniz.h"
+>>>>>>> 8a36d78b03a05d8da20192687da7c78ed19f5f6c
 
 // double get_pi(int term, int lower, int upper) {
 //     // compute PI to a given number of terms in the Leibniz series
@@ -58,7 +62,7 @@ int main(int argc, char** argv) {
         
         double start; 
         double end;
-        start = omp_get_wtime();
+        start = MPI_Wtime();
         
         // processes 1 ... number of process - 1
         for (i = nproc-1; i > 0; i--) {
@@ -84,7 +88,7 @@ int main(int argc, char** argv) {
         
         printf("%.30f\n", total);
         
-        end = omp_get_wtime();
+        end = MPI_Wtime();
         printf("Work took %f seconds\n", end - start);
 
     }

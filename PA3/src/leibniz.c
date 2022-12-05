@@ -1,7 +1,8 @@
-#include <mpi.h>
+#include "mpi.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include "../include/leibniz.h"
 
 double get_pi(int lower, int upper) {
     // compute PI to a given number of terms in the Leibniz series
