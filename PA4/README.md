@@ -7,7 +7,6 @@ future projects.
 
 Outcome of the Project:
 
-https://github.com/kalyanbhetwal/CS430/blob/main/PA4/mandelbrot.png
 
 
 Contents of this README:
