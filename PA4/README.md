@@ -32,6 +32,7 @@ are being added. You can get the latest source code from this git repository:
 
 ## II. Quick Start 
   A. Building PA4
+  
   B. Running Kernels for PA4
   
 # A. Building PA4
@@ -57,7 +58,7 @@ installed (see Requirements section below). Also please load appropriate modules
 # B. Running Kernels for PA4
      
      CUDA:
-     `sbatch cuda_job.bash` 
+     sbatch cuda_job.bash
 
      OPENMP:
      --------------------
@@ -70,6 +71,8 @@ installed (see Requirements section below). Also please load appropriate modules
 For more information please contact:
 
 Kalyan Bhetwal, kalyanbhetwal@u.boisestate.edu
+
 Phillip Bruce, phillipbruce@u.boisestate.edu
+
 Paul Vanderveen, paulvanderveen@u.boisestate.edu
 
