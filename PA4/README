@@ -5,6 +5,11 @@ For PA4, we wrote parallelized version of mandelbrot using
 We also created a build system and test suite that we should be able to use and/or build on in 
 future projects.
 
+Outcome of the Project:
+
+https://github.com/kalyanbhetwal/CS430/blob/main/PA4/mandelbrot.png
+
+
 Contents of this README:
 
 I.   Getting The Source Code
