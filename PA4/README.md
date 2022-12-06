@@ -12,7 +12,7 @@ Outcome of the Project:
 
 ## Contents of this README:
 
-I.   Getting The Source Code
+I. Getting The Source Code
 
 II.  Quick Start
 
