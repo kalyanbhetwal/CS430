@@ -33,7 +33,7 @@ TEST(TESTleibniz, myTest3)
 
 TEST(TESTMontecarlo, myTest4)
 {   
-    double a  = monteCarlo(10000);
+    double a  = monteCarlo(10000,5);
     EXPECT_NEAR(a, 3.14,0.1); 
 } 
 

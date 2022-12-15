@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/time.h>
 #include "../lib/mmio.h"
 #include "../include/matrix-vector.h"
 

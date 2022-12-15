@@ -3,4 +3,4 @@
 #include <time.h>
 #include <omp.h>
 
-float monteCarlo(long long maxIterations);
+float monteCarlo(long long maxIterations, int threads);
