@@ -84,13 +84,5 @@ float monteCarlo(long long maxIterations, int threads)
     printf("Total time: %ld microseconds\n", time_in_microseconds);
     printf("Or %ld milliseconds\n", time_in_microseconds / 1000);
     return 4 * (total / (float)maxIterations);
-<<<<<<< HEAD
-}
-=======
 }
 
-int main(int argc, char *argv[])
-{
-    printf("pi = %f\n", monteCarlo(strtol(argv[1], NULL, 10), strtoi(argv[2], NULL, 10)));
-}
->>>>>>> 8585a6b2cb332b8d526343f352a58c3aca34dc01
