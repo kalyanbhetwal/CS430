@@ -88,5 +88,5 @@ float monteCarlo(long long maxIterations, int threads)
 
 int main(int argc, char *argv[])
 {
-    printf("pi = %f\n", monteCarlo(20000000000, 28));
+    printf("pi = %f\n", monteCarlo(strtol(argv[1], NULL, 10), strtoi(argv[2], NULL, 10)));
 }
