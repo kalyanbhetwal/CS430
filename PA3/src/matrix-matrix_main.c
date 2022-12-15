@@ -87,6 +87,22 @@ int main(int argc, char *argv[])
         double end = MPI_Wtime(); /* only 1 process needs to do this */
         double time = end - start ;
         printf ("Elapsed  time %d : time = % f \n" , rank , time ) ;
+
+     char file1[2048];
+      getcwd(file1,2048);
+      strcat(file1,"/var/mmresult.mm");
+      FILE *stream_out;
+      stream_out = fopen(file1,"w");
+    
+      if(stream_out == NULL){
+        printf("Error: unable to open file: %s\n", file1);
+        exit(0);
+      }
+      fprintf(stream_out,"%s","%%MatrixMarket matrix array real general\n%\n");
+      fprintf(stream_out,"%d %d\n",N,1);
+      for(int i = 0; i<N; i++){
+        fprintf(stream_out, "%f\n", res->A[i]);
+      }
     }
 
     MPI_Finalize();

@@ -31,10 +31,10 @@ TEST(TESTMatrixVector, myTest1)
     struct matrixVector* result;
 
     float array[4] = {30.000000 ,70.000000 ,110.000000,150.00};
-    char file1[2048];
-    getcwd(file1,2048);
-    strcat(file1,"/var/mvresult.mm");
-    result = readMatrixVector(file1);
+    char file3[2048];
+    getcwd(file3,2048);
+    strcat(file3,"/var/mvresult.mm");
+    result = readMatrixVector(file3);
 
 
     // printf("The result of  matrix vector Multiplication \n");
@@ -50,23 +50,23 @@ TEST(TESTMatrixVector, myTest1)
 
 TEST(TESTMatrixMatrix, myTestMatMUL)
 {   
-    struct matrixMatrix* result;
+    struct matrixMatrix* result2;
 
-    float array[9] = {30.000000,36.000000,42.000000,66.000000,81.000000,96.000000,102.000000,126.000000,150.000000};
-    char file1[2048];
-    getcwd(file1,2048);
-    strcat(file1,"/var/mmresult.mm");
+    float array[9] = {90.000000,100.000000,110.000000,120.000000};
+    char file2[2048];
+    getcwd(file2,2048);
+    strcat(file2,"/var/mmresult.mm");
     
 
-    result = readMatrix(file1);
+    result2 = readMatrix(file2);
 
     // printf("The result of  matrix vector Multiplication \n");
     // for(int i = 0 ; i< result->nrows;i++){
     //     printf("%lf\n", result->A[i]);
     // }
 
-    for (int i = 0; i < result->nrows; ++i) {
-        EXPECT_EQ(result->A[i], array[i]) << "Vectors x and y differ at index " << i;
+    for (int i = 0; i < result2 ->nrows; ++i) {
+        EXPECT_EQ(result2->A[i], array[i]) << "Vectors x and y differ at index " << i;
     }
 } 
 
