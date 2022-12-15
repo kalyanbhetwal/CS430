@@ -2,5 +2,7 @@
 .idea
 PA1/build/
 PA2/build/
+PA3/build/
+PA3/benchmarks/
 .vscode
 *.o

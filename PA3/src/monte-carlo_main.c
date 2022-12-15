@@ -9,6 +9,12 @@ int main(int argc, char *argv[])
 {
     // init MPI
     MPI_Init(&argc, &argv);
+
+    if (argc < 2)
+	{
+		fprintf(stderr, "Usage: %s [no of iterations]\n", argv[0]);
+		exit(1);
+	}
     int world_size;
     MPI_Comm_size(MPI_COMM_WORLD, &world_size);
     int world_rank;

@@ -1,8 +1,12 @@
 //
 // Created by Kalyan on 9/8/22.
 //
-
+#define _POSIX_SOURCE
+#include <unistd.h>
+#undef _POSIX_SOURCE
+#include <stdio.h>
 #include "gtest/gtest.h"
+
 
 extern "C" {
 #include "../include/matrix-vector.h"
