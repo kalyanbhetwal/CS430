@@ -5,7 +5,7 @@ For PA4, we wrote parallelized version of mandelbrot using cuda and openmp.
 We also created a build system and test suite that we should be able to use and/or build on in 
 future projects.
 
-<<<<<<< HEAD:PA4/README
+
 Output from the project:
 
 
@@ -20,7 +20,7 @@ Outcome of the Project:
 ## Contents of this README:
 
 I. Getting The Source Code
->>>>>>> 8585a6b2cb332b8d526343f352a58c3aca34dc01:PA4/README.md
+
 
 II.  Quick Start
 
